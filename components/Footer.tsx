@@ -16,29 +16,6 @@ export default function Footer() {
         >
           No Mouth Labs
         </p>
-        <div className="flex items-center gap-6">
-          <a
-            href="#"
-            className="font-mono text-xs transition-colors"
-            style={{ color: "var(--color-stone)" }}
-          >
-            GitHub
-          </a>
-          <a
-            href="#"
-            className="font-mono text-xs transition-colors"
-            style={{ color: "var(--color-stone)" }}
-          >
-            LinkedIn
-          </a>
-          <a
-            href="#"
-            className="font-mono text-xs transition-colors"
-            style={{ color: "var(--color-stone)" }}
-          >
-            Substack
-          </a>
-        </div>
         <p
           className="text-sm opacity-60"
           style={{ fontFamily: "var(--font-serif)", fontStyle: "italic" }}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import NMLMark from "@/components/NMLMark";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
@@ -30,7 +31,7 @@ export default function Home() {
               className="mt-8 text-4xl md:text-5xl"
               style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
             >
-              No Mouth Labs
+              I build AI tools I actually ship.
             </h1>
           </AnimateIn>
           <AnimateIn delay={250}>
@@ -40,6 +41,31 @@ export default function Home() {
             >
               The work speaks now.
             </p>
+          </AnimateIn>
+          <AnimateIn delay={350}>
+            <p
+              className="mt-6 max-w-2xl text-base leading-relaxed"
+              style={{ color: "color-mix(in srgb, var(--color-negative-text) 75%, transparent)" }}
+            >
+              I&apos;m Rob Spencer — Solutions Architect by day, AI tool builder by compulsion.
+              The projects on this site are things I built because I needed them to exist: real
+              tools I use, not demos I forget about. Most of them run on Claude. All of them are
+              fully shipped. This portfolio is my proof of work.
+            </p>
+          </AnimateIn>
+          <AnimateIn delay={450}>
+            <div className="mt-8">
+              <Link
+                href="/demo-gauntlet"
+                className="inline-block px-6 py-3 rounded-lg font-mono text-sm font-medium transition-all duration-200"
+                style={{
+                  backgroundColor: "var(--color-ember)",
+                  color: "#fff",
+                }}
+              >
+                See my best demo →
+              </Link>
+            </div>
           </AnimateIn>
         </div>
 

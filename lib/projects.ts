@@ -34,6 +34,43 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "demo-gauntlet",
+    name: "Demo Gauntlet",
+    tagline:
+      "I built this to stress-test my own AI tools before demos. It runs a structured evaluation suite against any AI app — response quality, edge case handling, hallucination signals. I use it before every OutSystems SA engagement where I'm showing AI tooling.",
+    status: "Prototype",
+    statusColor: "stone",
+    metaDescription:
+      "Demo Gauntlet is an AI-powered demo practice simulator where challenger personas fire realistic objections, technical deep-dives, and budget challenges at solution consultants.",
+    problem:
+      "Every solution consultant practices demos in their head or with colleagues who go easy on them. The real test is the CFO who interrupts with 'what's the ROI?' or the Security Lead who asks about SOC 2 compliance mid-flow. You can't prepare for curveball questions by rehearsing alone. But you also can't assemble a panel of tough stakeholders every time you need to practice.",
+    build:
+      "Load your product context, pick a challenger persona (CTO, CFO, CMO, Security Lead, Skeptical End User), and run through your demo while the AI fires realistic objections, technical deep-dives, and budget challenges. Each persona has a distinct personality and concern profile. The CTO pushes on architecture and scalability. The CFO wants ROI math. The Security Lead asks about compliance and data handling. After the session, you get a scorecard covering objection handling, technical depth, clarity, and time management.",
+    differentiator:
+      "Built by someone who's been a solution consultant for 8+ years. The personas aren't generic — they're modeled on the actual stakeholders who show up in enterprise sales cycles. The hardest part of the job isn't knowing your product. It's handling the curveball questions in real-time. Demo Gauntlet doesn't go easy on you.",
+    techStack: [
+      { label: "Languages", items: ["Python", "JavaScript"] },
+      { label: "Frontend", items: ["React"] },
+      { label: "Backend", items: ["FastAPI"] },
+      { label: "AI", items: ["OpenAI API", "LangChain"] },
+      { label: "Knowledge", items: ["ChromaDB (product context retrieval)"] },
+      { label: "Infrastructure", items: ["Background jobs for session analysis"] },
+    ],
+    techTagsPreview: ["OpenAI", "FastAPI", "LangChain"],
+    actions: [
+      {
+        label: "Try it →",
+        href: "https://demo-gauntlet-ui.vercel.app",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#D97B2B",
+      heroMotif: "spotlight",
+      animationSpeed: 1,
+    },
+  },
+  {
     slug: "expert-council",
     name: "Expert Council",
     tagline: "Many viewpoints collapsing into clarity.",
@@ -73,7 +110,8 @@ export const projects: Project[] = [
   {
     slug: "kernel",
     name: "Kernel",
-    tagline: "The operating system for how you actually work.",
+    tagline:
+      "My personal AI operating system — running on my Mac, live in my Slack, in daily use for the past four months. It spawns workers, files research to Obsidian, reads my calendar and email, and surfaces what matters. Not a prototype. Not a concept. This one I actually depend on.",
     status: "In active daily use (single-user)",
     statusColor: "ember",
     metaDescription:
@@ -81,7 +119,7 @@ export const projects: Project[] = [
     problem:
       "AI tools are great at individual tasks but terrible at continuity. You can ask Claude to write code, but it doesn't know about the plan you made yesterday, the bug you filed this morning, or the three things you need to ship by Friday. Work happens across Slack, terminals, files, and your head. Nothing ties it together.",
     build:
-      "Kernel is an AI orchestration system that lives in Slack. You talk to it naturally — 'start a new worker for the auth refactor,' 'what's the status on the brand pipeline,' 'log this idea for later.' It spawns Claude Code workers for builds, tracks multi-step plans with progress and backlog items, manages daily captures and weekly reviews, and writes everything to a structured vault (Obsidian) for permanent memory. Workers run unattended. Plans persist across sessions. The system knows what you're building and where you left off.",
+      "Built with Claude, Python, and a tmux-based worker architecture I designed from scratch. Kernel is an AI orchestration system that lives in Slack. You talk to it naturally — 'start a new worker for the auth refactor,' 'what's the status on the brand pipeline,' 'log this idea for later.' It spawns Claude Code workers for builds, tracks multi-step plans with progress and backlog items, manages daily captures and weekly reviews, and writes everything to a structured vault (Obsidian) for permanent memory. Workers run unattended. Plans persist across sessions. The system knows what you're building and where you left off.",
     differentiator:
       "It's not a chatbot wrapper. It's infrastructure. Kernel spawns autonomous workers, manages their lifecycle, tracks costs, logs decisions, and maintains operational memory across days and weeks. The security model handles unattended agent execution — not just 'I'm at the keyboard' assumptions. It's the difference between a tool and a system.",
     techStack: [
@@ -102,44 +140,6 @@ export const projects: Project[] = [
     flavor: {
       accent: "#E8553A",
       heroMotif: "terminal",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "demo-gauntlet",
-    name: "Demo Gauntlet",
-    tagline:
-      "Practice your demo against AI personas who ask the hard questions your prospects will.",
-    status: "Prototype",
-    statusColor: "stone",
-    metaDescription:
-      "Demo Gauntlet is an AI-powered demo practice simulator where challenger personas fire realistic objections, technical deep-dives, and budget challenges at solution consultants.",
-    problem:
-      "Every solution consultant practices demos in their head or with colleagues who go easy on them. The real test is the CFO who interrupts with 'what's the ROI?' or the Security Lead who asks about SOC 2 compliance mid-flow. You can't prepare for curveball questions by rehearsing alone. But you also can't assemble a panel of tough stakeholders every time you need to practice.",
-    build:
-      "Load your product context, pick a challenger persona (CTO, CFO, CMO, Security Lead, Skeptical End User), and run through your demo while the AI fires realistic objections, technical deep-dives, and budget challenges. Each persona has a distinct personality and concern profile. The CTO pushes on architecture and scalability. The CFO wants ROI math. The Security Lead asks about compliance and data handling. After the session, you get a scorecard covering objection handling, technical depth, clarity, and time management.",
-    differentiator:
-      "Built by someone who's been a solution consultant for 8+ years. The personas aren't generic — they're modeled on the actual stakeholders who show up in enterprise sales cycles. The hardest part of the job isn't knowing your product. It's handling the curveball questions in real-time. Demo Gauntlet doesn't go easy on you.",
-    techStack: [
-      { label: "Languages", items: ["Python", "JavaScript"] },
-      { label: "Frontend", items: ["React"] },
-      { label: "Backend", items: ["FastAPI"] },
-      { label: "AI", items: ["OpenAI API", "LangChain"] },
-      { label: "Knowledge", items: ["ChromaDB (product context retrieval)"] },
-      { label: "Infrastructure", items: ["Background jobs for session analysis"] },
-    ],
-    techTagsPreview: ["OpenAI", "FastAPI", "LangChain"],
-    actions: [
-      {
-        label: "Try Demo",
-        href: "https://demo-gauntlet-ui.vercel.app",
-        variant: "primary",
-      },
-      { label: "GitHub", href: "#", variant: "secondary" },
-    ],
-    flavor: {
-      accent: "#D97B2B",
-      heroMotif: "spotlight",
       animationSpeed: 1,
     },
   },
