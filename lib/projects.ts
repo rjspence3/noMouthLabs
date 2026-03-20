@@ -63,6 +63,7 @@ export const projects: Project[] = [
         href: "https://demo-gauntlet-ui.vercel.app",
         variant: "primary",
       },
+      { label: "GitHub", href: "https://github.com/rjspence3/demo-gauntlet", variant: "secondary" },
     ],
     flavor: {
       accent: "#D97B2B",
@@ -167,7 +168,7 @@ export const projects: Project[] = [
     techTagsPreview: ["Next.js", "OpenAI", "38 tests"],
     actions: [
       { label: "Try It", href: "https://napgpt.vercel.app", variant: "primary" },
-      { label: "GitHub", href: "#", variant: "secondary" },
+      { label: "GitHub", href: "https://github.com/rjspence3/napGPT", variant: "secondary" },
     ],
     flavor: {
       accent: "#8B7EC8",
@@ -287,7 +288,7 @@ export const projects: Project[] = [
         href: "https://jobheist.vercel.app",
         variant: "primary",
       },
-      { label: "GitHub", href: "#", variant: "secondary" },
+      { label: "GitHub", href: "https://github.com/rjspence3/job-heist", variant: "secondary" },
     ],
     flavor: {
       accent: "#E8553A",
