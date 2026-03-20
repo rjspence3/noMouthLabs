@@ -296,6 +296,43 @@ export const projects: Project[] = [
       animationSpeed: 1,
     },
   },
+  {
+    slug: "aequity",
+    name: "aEquity",
+    tagline:
+      "Autonomous equity analyst. S&P 500 stocks scored across four guru-driven lenses — business quality, competitive moat, financial health, and governance — using SEC 10-K filings, yfinance metrics, and Claude.",
+    status: "Live",
+    statusColor: "ember",
+    metaDescription:
+      "aEquity is an autonomous equity analyst that combines quantitative financial metrics, SEC filing analysis, and Claude LLM scoring to produce a 0–100 scorecard for S&P 500 companies.",
+    problem:
+      "Retail investors and analysts spend hours reading 10-Ks, running ratios, and cross-referencing qualitative signals before they can form a view on a stock. Most tools give you raw data. None of them reason through it. aEquity does the analysis the way a serious investor would — across multiple frameworks, simultaneously.",
+    build:
+      "Pulls quantitative metrics via yfinance, downloads and parses SEC EDGAR 10-K filings, and runs Claude across four analytical pillars: business quality, competitive moat, financial health, and governance. Each pillar scores 0–100. The final scorecard shows where a company is strong, where it's weak, and why. Runs as a CLI for single stocks, a Streamlit dashboard for screening, or a batch runner to populate a SQLite database of scored companies.",
+    differentiator:
+      "Four separate analytical lenses, not one score. The moat analysis reads the actual 10-K for competitive positioning signals — not just P/E ratios. Claude reasons through the qualitative parts. yfinance handles the math. The combination produces the kind of structured opinion a buy-side analyst would write, automated.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "AI", items: ["Claude API"] },
+      { label: "Data", items: ["yfinance", "SEC EDGAR"] },
+      { label: "Interface", items: ["Streamlit", "CLI"] },
+      { label: "Storage", items: ["SQLite"] },
+    ],
+    techTagsPreview: ["Python", "Claude", "SEC EDGAR"],
+    actions: [
+      {
+        label: "Try It",
+        href: "https://aequity-production.up.railway.app",
+        variant: "primary",
+      },
+      { label: "GitHub", href: "#", variant: "secondary" },
+    ],
+    flavor: {
+      accent: "#2D9E6B",
+      heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
