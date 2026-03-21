@@ -34,6 +34,42 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "expert-council",
+    name: "Expert Council",
+    tagline: "Many viewpoints collapsing into clarity.",
+    status: "Beta — functional, not publicly launched",
+    statusColor: "stone",
+    metaDescription:
+      "Expert Council assembles a panel of AI personas to debate your question in real-time, preserving disagreement and trade-offs instead of flattening them into a single answer.",
+    problem:
+      "Most AI chat is one voice giving you one perspective. Real decisions benefit from structured disagreement. When you're facing a hard choice — career move, architecture decision, strategy call — you don't want one opinion. You want a room full of smart people who see it differently, argue about it, and help you find what you actually think.",
+    build:
+      "A Research Agent searches the web, then selects 2–4 relevant experts from a roster of 9 distinct personas (Stoic Philosopher, Decision Helper, Creative Thought Partner, Time Traveler Analyst, and more). The experts discuss the topic in real-time through WebSocket-powered chat. Three discussion modes: Cooperative (experts build on each other), Debate (experts argue and defend positions), and Devil's Advocate (experts challenge your thinking). Each expert can search the web mid-discussion, and users can see their extended thinking — the actual reasoning, not just polished output.",
+    differentiator:
+      "The experts aren't the same AI with different labels. A behavioral testing rubric with 36-case evaluations ensures a Stoic Philosopher and a Decision Helper actually give meaningfully different advice — not the same answer reworded. The system was built for thinking quality, not chat speed.",
+    techStack: [
+      { label: "Languages", items: ["Python", "JavaScript"] },
+      { label: "Frontend", items: ["React"] },
+      { label: "Backend", items: ["FastAPI", "WebSocket"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Search", items: ["Tavily API"] },
+      { label: "Infrastructure", items: ["Caddy (reverse proxy)"] },
+    ],
+    techTagsPreview: ["Claude", "FastAPI", "WebSocket"],
+    actions: [
+      {
+        label: "Try Demo",
+        href: "https://expert-council-1078459944567.us-central1.run.app",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#5B8DEF",
+      heroMotif: "bubbles",
+      animationSpeed: 1,
+    },
+  },
+  {
     slug: "demo-gauntlet",
     name: "Demo Gauntlet",
     tagline:
