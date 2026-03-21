@@ -172,7 +172,6 @@ export const projects: Project[] = [
         href: "https://lawn.nomouthlabs.com",
         variant: "primary",
       },
-      { label: "GitHub", href: "#", variant: "secondary" },
     ],
     flavor: {
       accent: "#4A9E6B",
@@ -214,7 +213,6 @@ export const projects: Project[] = [
         href: "https://excelriskcheck.com/",
         variant: "primary",
       },
-      { label: "API Docs", href: "#", variant: "secondary" },
     ],
     flavor: {
       accent: "#E8553A",
@@ -288,7 +286,7 @@ export const projects: Project[] = [
         href: "https://aequity-production.up.railway.app",
         variant: "primary",
       },
-      { label: "GitHub", href: "#", variant: "secondary" },
+      { label: "GitHub", href: "https://github.com/rjspence3/aEquity", variant: "secondary" },
     ],
     flavor: {
       accent: "#2D9E6B",
