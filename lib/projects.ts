@@ -249,6 +249,11 @@ export const projects: Project[] = [
         href: "https://excelriskcheck.com/",
         variant: "primary",
       },
+      {
+        label: "API Docs",
+        href: "https://rapidapi.com/excelriskcheck/api/excel-risk-check",
+        variant: "secondary",
+      },
     ],
     flavor: {
       accent: "#E8553A",
