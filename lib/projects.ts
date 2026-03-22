@@ -299,6 +299,39 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "dspy-api",
+    name: "The Arbitrage Factory",
+    tagline:
+      "Upload a schema, optimize it with DSPy/MIPROv2, deploy as a REST API — 10–30x cheaper than raw GPT-4o.",
+    status: "Live — deployed on GCP",
+    statusColor: "ember",
+    metaDescription:
+      "The Arbitrage Factory is a serverless platform that optimizes AI agents using DSPy's MIPROv2 — finding better prompts for cheaper models so you don't have to pay GPT-4o prices for production traffic.",
+    problem:
+      "Running AI in production at GPT-4o prices is expensive at scale. The insight most teams miss: GPT-4o-level quality is often achievable with a much cheaper model — if you optimize the prompts. DSPy's MIPROv2 does exactly that, but setting it up from scratch requires expertise in prompt optimization pipelines, synthetic data generation, evaluation harnesses, and deployment infrastructure.",
+    build:
+      "Define your input/output schema in a UI. The platform generates synthetic training examples with GPT-4o, runs MIPROv2 optimization to find the best prompts for a cheaper student model (gpt-4o-mini), and produces a Regatta Report comparing cost and accuracy between baseline and optimized agents. The optimized agent deploys immediately as a REST endpoint with API key auth. Async job execution runs on Cloud Tasks with stuck-job recovery; compiled programs persist in GCS.",
+    differentiator:
+      "Most prompt optimization tools are research prototypes. The Arbitrage Factory is a production pipeline: schema builder, synthetic data generation, MIPROv2 optimization, cost/accuracy reporting, and REST deployment — all connected. The output is a live API, not a notebook. 146 tests passing.",
+    techStack: [
+      { label: "Languages", items: ["Python", "TypeScript"] },
+      { label: "Frontend", items: ["Next.js", "Clerk (auth)"] },
+      { label: "Backend", items: ["FastAPI", "DSPy (MIPROv2)"] },
+      { label: "AI", items: ["OpenAI API (GPT-4o, gpt-4o-mini)"] },
+      {
+        label: "Infrastructure",
+        items: ["GCP Cloud Run", "Firestore", "Cloud Tasks", "GCS"],
+      },
+    ],
+    techTagsPreview: ["DSPy", "FastAPI", "GCP"],
+    actions: [],
+    flavor: {
+      accent: "#2A7DE1",
+      heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
+  {
     slug: "aequity",
     name: "aEquity",
     tagline:
@@ -332,6 +365,136 @@ export const projects: Project[] = [
     flavor: {
       accent: "#2D9E6B",
       heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "agentic-interview",
+    name: "Agentic Interview",
+    tagline:
+      "AI-powered technical interviews with lens-based evaluation and DSPy-optimized scoring. Not a quiz — a structured conversation that reasons about candidates.",
+    status: "Beta — deployed privately, not publicly launched",
+    statusColor: "stone",
+    metaDescription:
+      "Agentic Interview is an AI-powered technical interview platform with multi-agent evaluation, configurable analytical lenses, and DSPy-optimized scoring — built for organizations that want structured, traceable hiring decisions.",
+    problem:
+      "Technical interviews are inconsistent, undocumented, and prone to interviewer bias. The same candidate gets wildly different results from different interviewers because there's no structured evaluation framework — just gut calls and vibes. Organizations lose good candidates and hire bad ones because the process isn't designed to be reliable.",
+    build:
+      "A multi-agent system where a QuestionsAgent drives the interview, an EvaluatorAgent scores each answer against keypoints, and an OrchestratorAgent manages session state. Two evaluation modes: fast heuristic matching and LLM-powered semantic scoring via OpenAI or Anthropic. A separate lens analysis pipeline applies configurable analytical frameworks to the full interview transcript — not just individual answers — to surface structured insights about candidate patterns. DSPy optimization pre-compiles the evaluator prompts for consistent, cost-efficient scoring at scale. Full audit trail: every transcript, evaluation, and lens result is persisted to PostgreSQL via SQLAlchemy.",
+    differentiator:
+      "Lens-based analysis is the differentiator. Most AI interview tools grade individual answers. This one applies multiple analytical frameworks to the full conversation — like overlaying different lenses on the same transcript to see what each one reveals. The DSPy-optimized prompts mean the evaluation rubric is genuinely tunable: you can train it on your own scoring preferences, not just use someone else's defaults. Multi-tenant, full audit trail, export to CSV/JSON.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "Frontend", items: ["Streamlit"] },
+      { label: "Backend", items: ["SQLAlchemy", "Alembic"] },
+      {
+        label: "AI",
+        items: ["OpenAI API", "Anthropic API", "DSPy (prompt optimization)"],
+      },
+      { label: "Storage", items: ["PostgreSQL (prod)", "SQLite (dev)"] },
+      { label: "Infrastructure", items: ["Railway"] },
+    ],
+    techTagsPreview: ["DSPy", "Streamlit", "PostgreSQL"],
+    actions: [],
+    flavor: {
+      accent: "#5B6EF5",
+      heroMotif: "bubbles",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "ai-beta-tester",
+    name: "AI Beta Tester",
+    tagline: "Personality-driven agents that break your app the way real users do.",
+    status: "Beta — working, Docker-only",
+    statusColor: "stone",
+    metaDescription:
+      "AI Beta Tester runs personality-driven Claude agents — Speedrunner, Chaos Gremlin, Methodical Newcomer, and more — against any URL via Playwright MCP, generating structured bug reports from behavioral profiles that uniform testing misses.",
+    problem:
+      "You built it, so you know how it's supposed to work. That's exactly what makes you blind to it. Real users don't follow the happy path — they tab-key through forms in the wrong order, paste URLs into search boxes, click things twice, and abandon flows the moment anything feels off. Standard automated tests verify that the code works. They don't verify that the experience makes sense to someone who isn't you.",
+    build:
+      "A set of distinct agent personalities — Speedrunner, Chaos Gremlin, Methodical Newcomer, Technical Exploiter, Privacy Paranoid, and more — each with a behavioral profile that shapes how they interact with a target URL via Playwright MCP. Agents run against your app, surface findings by category (UX friction, edge cases, broken flows), and produce structured Markdown reports with reproduction steps. A Next.js dashboard shows live session progress via SSE, session history, and a report browser. The backend runs as a FastAPI service; agents use Claude to reason through what they're seeing and decide what to try next.",
+    differentiator:
+      "The value isn't automation — it's the behavioral diversity. A Speedrunner skips instructions and rage-clicks. A Methodical Newcomer reads everything and still gets lost. A Chaos Gremlin submits empty forms and pastes emojis into number fields. Each personality catches a different class of bug. Running all of them against the same URL in a single session surfaces the full spectrum of failure modes before a real user finds them first.",
+    techStack: [
+      { label: "Languages", items: ["Python", "TypeScript"] },
+      { label: "Frontend", items: ["Next.js 14", "React"] },
+      { label: "Backend", items: ["FastAPI", "SSE (live progress)"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Testing", items: ["Playwright MCP (browser automation)"] },
+      { label: "Infrastructure", items: ["Docker", "Railway"] },
+    ],
+    techTagsPreview: ["Claude", "Playwright", "FastAPI"],
+    actions: [],
+    flavor: {
+      accent: "#3B7DD8",
+      heroMotif: "terminal",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "context-os",
+    name: "ContextOS",
+    tagline: "The graph-based memory layer that prevents Groundhog Day in AI.",
+    status: "Prototype — v1.2-rc1, active development",
+    statusColor: "stone",
+    metaDescription:
+      "ContextOS is an active memory OS for AI — a FastAPI server backed by a property graph (KuzuDB) and vector store (LanceDB) that extracts entities, facts, and relationships from your AI sessions and injects relevant context into future ones.",
+    problem:
+      "Every AI session starts from zero. You re-explain your project. You re-introduce your team. You re-describe constraints the AI forgot overnight. Standard RAG retrieves keywords but misses relationships — it doesn't know that Project A is blocking Project B, or that you made a decision three weeks ago that affects the code you're writing today. The context window can't hold six months of history, and even if it could, you wouldn't want to stuff all of it in every prompt.",
+    build:
+      "ContextOS runs as a background service alongside your AI tools. A Chrome extension monitors Claude.ai and ChatGPT sessions, detects idle time, and ships conversation transcripts to a local FastAPI server. An extraction pipeline (built around OpenAI gpt-4o-mini) pulls out facts, projects, people, decisions, and relationships as typed graph triples — then stores them in KuzuDB (an embedded property graph) and LanceDB (vector embeddings). Four API endpoints do the work: /ingest queues transcripts, /recall runs hybrid graph + vector search, /context returns a curated injection block formatted for a system prompt, and /brief diffs yesterday's graph state against today's for a morning summary.",
+    differentiator:
+      "ContextOS captures relationships between concepts, not just keyword similarity — which is what lets it answer 'what's blocking Project A?' instead of just 'find things mentioning Project A.' It's fully local: both databases are embedded (no Docker, no cloud), all data stays on your machine, and the server binds to 127.0.0.1. It predates Kernel and is the standalone proof-of-concept for the memory architecture Kernel later extended. Built before persistent AI memory was a mainstream product category.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "Backend", items: ["FastAPI", "Uvicorn"] },
+      { label: "Graph DB", items: ["KuzuDB (embedded property graph)"] },
+      { label: "Vector DB", items: ["LanceDB (embedded vector store)"] },
+      { label: "AI", items: ["OpenAI gpt-4o-mini (extraction)", "OpenAI gpt-4o (synthesis)"] },
+      { label: "Extension", items: ["Chrome Extension (Manifest V3)", "Claude.ai + ChatGPT scraping"] },
+    ],
+    techTagsPreview: ["KuzuDB", "LanceDB", "FastAPI"],
+    actions: [],
+    flavor: {
+      accent: "#7B4FBA",
+      heroMotif: "graph",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "darch",
+    name: "dArch",
+    tagline:
+      "Decision Archaeology: reconstructs what was decided, what was explicitly rejected, and why — from public GitHub PR history.",
+    status: "CLI — UI in progress",
+    statusColor: "stone",
+    metaDescription:
+      "dArch is a CLI tool that reconstructs architectural decision timelines from GitHub history, surfacing structural constraints extracted from PRs, reverts, and design discussions across open-source repositories.",
+    problem:
+      "Every codebase carries invisible load-bearing decisions — things that were tried and reverted, constraints baked in during a single PR discussion, choices that blocked entire design directions for years. None of that is documented. It lives in closed PRs, comments, and commit messages. When a new contributor asks 'why is it like this?', the answer is usually 'no idea' or 'someone did it that way years ago.'",
+    build:
+      "Run darch against any public GitHub repository. It fetches closed PRs and reverts, uses an LLM to classify each as a decision or anti-decision, extracts the constraint phrase (what future designs are now blocked), and generates a timestamped timeline. Anti-decisions — things explicitly rejected — are the most interesting output: they reveal the design paths the project tried and abandoned. Five repositories analyzed so far: OpenRA, Godot, Luanti, SuperTuxKart, OpenMW. 22 validated structural constraints extracted.",
+    differentiator:
+      "Most archaeology tools look at what shipped. dArch looks at what was rejected. Anti-decisions are the invisible architecture — the decisions that constrain every design choice afterward but never appear in documentation. Surfacing them makes the implicit load-bearing structure of a codebase legible.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "CLI", items: ["Typer", "Rich"] },
+      { label: "AI", items: ["OpenAI API (extraction)"] },
+      { label: "Storage", items: ["SQLite"] },
+      { label: "GitHub", items: ["REST API v3"] },
+    ],
+    techTagsPreview: ["Python", "OpenAI", "SQLite"],
+    actions: [
+      {
+        label: "View Demo",
+        href: "/darch",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#C47D2E",
+      heroMotif: "terminal",
       animationSpeed: 1,
     },
   },
