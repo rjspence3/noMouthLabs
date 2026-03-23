@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 510" width="800" height="510">
+  <!-- Background -->
+  <rect width="800" height="510" fill="#0d0d0d"/>
+
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" fill="#555" font-size="10" font-family="monospace" letter-spacing="4">KERNEL ARCHITECTURE</text>
+
+  <!-- === ROW 1: Rob → Slack → Kernel Orchestrator === -->
+
+  <!-- Rob -->
+  <rect x="30" y="50" width="100" height="36" fill="none" stroke="#444" stroke-width="1" rx="2"/>
+  <text x="80" y="73" text-anchor="middle" fill="#999" font-family="monospace" font-size="12">Rob</text>
+
+  <!-- Arrow: Rob → Slack -->
+  <line x1="130" y1="68" x2="178" y2="68" stroke="#E8553A" stroke-width="1.5"/>
+  <polygon points="174,64 182,68 174,72" fill="#E8553A"/>
+
+  <!-- Slack -->
+  <rect x="182" y="50" width="100" height="36" fill="none" stroke="#444" stroke-width="1" rx="2"/>
+  <text x="232" y="73" text-anchor="middle" fill="#999" font-family="monospace" font-size="12">Slack</text>
+
+  <!-- Arrow: Slack → Kernel Orchestrator -->
+  <line x1="282" y1="68" x2="330" y2="68" stroke="#E8553A" stroke-width="1.5"/>
+  <polygon points="326,64 334,68 326,72" fill="#E8553A"/>
+
+  <!-- Kernel Orchestrator (accent border) -->
+  <rect x="334" y="45" width="216" height="46" fill="none" stroke="#E8553A" stroke-width="1.5" rx="2"/>
+  <text x="442" y="67" text-anchor="middle" fill="#E8553A" font-family="monospace" font-size="13" font-weight="bold">Kernel Orchestrator</text>
+  <text x="442" y="83" text-anchor="middle" fill="#666" font-family="monospace" font-size="10">Python · persistent process · macOS</text>
+
+  <!-- Arrow: Orchestrator ↓ Claude SDK -->
+  <line x1="442" y1="91" x2="442" y2="133" stroke="#E8553A" stroke-width="1.5"/>
+  <polygon points="438,129 442,137 446,129" fill="#E8553A"/>
+
+  <!-- === ROW 2: Claude SDK Session === -->
+  <rect x="302" y="137" width="280" height="46" fill="none" stroke="#E8553A" stroke-width="1.5" rx="2"/>
+  <text x="442" y="159" text-anchor="middle" fill="#E8553A" font-family="monospace" font-size="13" font-weight="bold">Claude SDK Session</text>
+  <text x="442" y="175" text-anchor="middle" fill="#666" font-family="monospace" font-size="10">intent · context · memory · dispatch</text>
+
+  <!-- Branch left: Claude SDK → Worker Spawner -->
+  <polyline points="390,183 230,183 230,245" fill="none" stroke="#666" stroke-width="1.5"/>
+  <polygon points="226,241 230,249 234,241" fill="#666"/>
+
+  <!-- Branch right: Claude SDK → Vault Writer -->
+  <polyline points="494,183 620,183 620,245" fill="none" stroke="#666" stroke-width="1.5"/>
+  <polygon points="616,241 620,249 624,241" fill="#666"/>
+
+  <!-- === ROW 3: Worker Spawner + Vault Writer === -->
+
+  <!-- Worker Spawner -->
+  <rect x="150" y="249" width="160" height="36" fill="none" stroke="#555" stroke-width="1" rx="2"/>
+  <text x="230" y="272" text-anchor="middle" fill="#aaa" font-family="monospace" font-size="12">Worker Spawner</text>
+
+  <!-- Vault Writer -->
+  <rect x="540" y="249" width="160" height="36" fill="none" stroke="#555" stroke-width="1" rx="2"/>
+  <text x="620" y="272" text-anchor="middle" fill="#aaa" font-family="monospace" font-size="12">Vault Writer</text>
+
+  <!-- Arrow: Worker Spawner ↓ Claude Code Workers -->
+  <line x1="230" y1="285" x2="230" y2="333" stroke="#555" stroke-width="1.5"/>
+  <polygon points="226,329 230,337 234,329" fill="#555"/>
+
+  <!-- Arrow: Vault Writer ↓ Obsidian Vault -->
+  <line x1="620" y1="285" x2="620" y2="333" stroke="#555" stroke-width="1.5"/>
+  <polygon points="616,329 620,337 624,329" fill="#555"/>
+
+  <!-- === ROW 4: Claude Code Workers + Obsidian Vault === -->
+
+  <!-- Claude Code Workers -->
+  <rect x="100" y="337" width="260" height="52" fill="none" stroke="#555" stroke-width="1" rx="2"/>
+  <text x="230" y="360" text-anchor="middle" fill="#aaa" font-family="monospace" font-size="12">Claude Code Workers</text>
+  <text x="230" y="378" text-anchor="middle" fill="#555" font-family="monospace" font-size="10">build · research · read · test · file</text>
+
+  <!-- Obsidian Vault -->
+  <rect x="510" y="337" width="220" height="52" fill="none" stroke="#555" stroke-width="1" rx="2"/>
+  <text x="620" y="360" text-anchor="middle" fill="#aaa" font-family="monospace" font-size="12">Obsidian Vault</text>
+  <text x="620" y="378" text-anchor="middle" fill="#555" font-family="monospace" font-size="10">148 nodes · 370+ edges</text>
+
+  <!-- Arrow: Claude Code Workers ↓ Integrations -->
+  <line x1="230" y1="389" x2="230" y2="433" stroke="#444" stroke-width="1.5"/>
+  <polygon points="226,429 230,437 234,429" fill="#444"/>
+
+  <!-- === ROW 5: Integrations === -->
+  <rect x="100" y="437" width="260" height="36" fill="none" stroke="#444" stroke-width="1" rx="2"/>
+  <text x="230" y="460" text-anchor="middle" fill="#666" font-family="monospace" font-size="12">GitHub · Vercel · GCP · Slack</text>
+
+  <!-- Stats watermark bottom-right -->
+  <text x="775" y="430" text-anchor="end" fill="#333" font-family="monospace" font-size="10">1,000+ workers run</text>
+  <text x="775" y="447" text-anchor="end" fill="#333" font-family="monospace" font-size="10">120+ days production</text>
+  <text x="775" y="464" text-anchor="end" fill="#333" font-family="monospace" font-size="10">$350+ cost tracked</text>
+</svg>

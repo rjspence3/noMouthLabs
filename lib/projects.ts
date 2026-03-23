@@ -3,10 +3,16 @@ export interface TechStackGroup {
   items: string[];
 }
 
+export interface ProjectMetric {
+  label: string;
+  value: string;
+}
+
 export interface ProjectAction {
   label: string;
   href: string;
-  variant: "primary" | "secondary";
+  variant?: "primary" | "secondary";
+  external?: boolean;
 }
 
 export interface ProjectFlavor {
@@ -30,6 +36,8 @@ export interface Project {
   techTagsPreview: string[];
   actions: ProjectAction[];
   flavor: ProjectFlavor;
+  category?: "demo" | "backend-tool";
+  metrics?: ProjectMetric[];
 }
 
 export const projects: Project[] = [
@@ -119,9 +127,9 @@ export const projects: Project[] = [
     problem:
       "AI tools are great at individual tasks but terrible at continuity. You can ask Claude to write code, but it doesn't know about the plan you made yesterday, the bug you filed this morning, or the three things you need to ship by Friday. Work happens across Slack, terminals, files, and your head. Nothing ties it together.",
     build:
-      "Built with Claude, Python, and a tmux-based worker architecture I designed from scratch. Kernel is an AI orchestration system that lives in Slack. You talk to it naturally — 'start a new worker for the auth refactor,' 'what's the status on the brand pipeline,' 'log this idea for later.' It spawns Claude Code workers for builds, tracks multi-step plans with progress and backlog items, manages daily captures and weekly reviews, and writes everything to a structured vault (Obsidian) for permanent memory. Workers run unattended. Plans persist across sessions. The system knows what you're building and where you left off.",
+      "Kernel is a Claude SDK session running as a persistent process on my Mac. It receives messages via Slack, processes them through an intent classifier, and dispatches work to Claude Code worker processes. Workers run autonomously — building code, running tests, reading books, filing research to a knowledge graph. Results surface back in Slack. The whole system runs unattended: nightly reading sessions, morning briefings, GitHub cleanup, demo testing — all without my involvement. 120+ days of daily use, 1,000+ workers run, 148-node knowledge vault.",
     differentiator:
-      "It's not a chatbot wrapper. It's infrastructure. Kernel spawns autonomous workers, manages their lifecycle, tracks costs, logs decisions, and maintains operational memory across days and weeks. The security model handles unattended agent execution — not just 'I'm at the keyboard' assumptions. It's the difference between a tool and a system.",
+      "It's not a chatbot wrapper. It's infrastructure. Kernel spawns autonomous workers, manages their lifecycle, tracks costs, logs decisions, and maintains operational memory across days and weeks. The security model handles unattended agent execution — not just 'I'm at the keyboard' assumptions. It's the difference between a tool and a system. The most interesting part for Anthropic: it's Claude orchestrating Claude. The Kernel session (Claude SDK) spawns Claude Code workers, monitors their lifecycle, reads their output, and chains follow-up workers when needed. It's a real multi-agent system that's been running in production for 4 months.",
     techStack: [
       { label: "Languages", items: ["Python"] },
       { label: "Interface", items: ["Slack API (Bot)"] },
@@ -136,7 +144,16 @@ export const projects: Project[] = [
       { label: "Infrastructure", items: ["Local Mac", "Background processes"] },
     ],
     techTagsPreview: ["Claude Code", "Slack", "SQLite"],
-    actions: [],
+    actions: [
+      { label: "View Architecture", href: "https://nomouthlabs.com/kernel#architecture", variant: "primary" },
+      { label: "Read the Story", href: "https://rjspence3.substack.com", variant: "secondary" },
+    ],
+    metrics: [
+      { label: "Workers run", value: "1,000+" },
+      { label: "Vault nodes", value: "148" },
+      { label: "Days in production", value: "120+" },
+      { label: "Cost tracked", value: "$350+" },
+    ],
     flavor: {
       accent: "#E8553A",
       heroMotif: "terminal",
@@ -300,6 +317,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dspy-api",
+    category: "backend-tool",
     name: "The Arbitrage Factory",
     tagline:
       "Upload a schema, optimize it with DSPy/MIPROv2, deploy as a REST API — 10–30x cheaper than raw GPT-4o.",
@@ -376,6 +394,7 @@ export const projects: Project[] = [
   },
   {
     slug: "agentic-interview",
+    category: "backend-tool",
     name: "Agentic Interview",
     tagline:
       "AI-powered technical interviews with lens-based evaluation and DSPy-optimized scoring. Not a quiz — a structured conversation that reasons about candidates.",
@@ -410,6 +429,7 @@ export const projects: Project[] = [
   },
   {
     slug: "ai-beta-tester",
+    category: "backend-tool",
     name: "AI Beta Tester",
     tagline: "Personality-driven agents that break your app the way real users do.",
     status: "Beta — working, Docker-only",
@@ -442,6 +462,7 @@ export const projects: Project[] = [
   },
   {
     slug: "context-os",
+    category: "backend-tool",
     name: "ContextOS",
     tagline: "The graph-based memory layer that prevents Groundhog Day in AI.",
     status: "Prototype — v1.2-rc1, active development",
