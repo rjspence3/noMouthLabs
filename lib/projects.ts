@@ -324,7 +324,13 @@ export const projects: Project[] = [
       },
     ],
     techTagsPreview: ["DSPy", "FastAPI", "GCP"],
-    actions: [],
+    actions: [
+      {
+        label: "Try It",
+        href: "https://dpsyapi-frontend-d2z6r9y92-imaglides-projects.vercel.app",
+        variant: "primary",
+      },
+    ],
     flavor: {
       accent: "#2A7DE1",
       heroMotif: "grid",
@@ -425,7 +431,9 @@ export const projects: Project[] = [
       { label: "Infrastructure", items: ["Docker", "Railway"] },
     ],
     techTagsPreview: ["Claude", "Playwright", "FastAPI"],
-    actions: [],
+    actions: [
+      { label: "View Demo", href: "https://ai-beta-tester-ui.vercel.app", external: true },
+    ],
     flavor: {
       accent: "#3B7DD8",
       heroMotif: "terminal",
@@ -488,7 +496,7 @@ export const projects: Project[] = [
     actions: [
       {
         label: "View Demo",
-        href: "/darch",
+        href: "https://darch-ui.vercel.app",
         variant: "primary",
       },
     ],
