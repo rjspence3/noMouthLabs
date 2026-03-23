@@ -145,7 +145,7 @@ export const projects: Project[] = [
     ],
     techTagsPreview: ["Claude Code", "Slack", "SQLite"],
     actions: [
-      { label: "View Architecture", href: "https://nomouthlabs.com/kernel#architecture", variant: "primary" },
+      { label: "View Live Dashboard", href: "https://kernel-dashboard-production.up.railway.app", variant: "primary" },
       { label: "Read the Story", href: "https://rjspence3.substack.com", variant: "secondary" },
     ],
     metrics: [
