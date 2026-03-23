@@ -45,8 +45,8 @@ export const projects: Project[] = [
     slug: "expert-council",
     name: "Expert Council",
     tagline: "Many viewpoints collapsing into clarity.",
-    status: "Beta — functional, not publicly launched",
-    statusColor: "stone",
+    status: "Live",
+    statusColor: "ember",
     metaDescription:
       "Expert Council assembles a panel of AI personas to debate your question in real-time, preserving disagreement and trade-offs instead of flattening them into a single answer.",
     problem:
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     actions: [
       {
         label: "Try Demo",
-        href: "https://expert-council-1078459944567.us-central1.run.app",
+        href: "https://expert-council-1078459944567.us-central1.run.app/app",
         variant: "primary",
       },
     ],
