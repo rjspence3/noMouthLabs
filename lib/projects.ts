@@ -96,11 +96,10 @@ export const projects: Project[] = [
       { label: "Languages", items: ["Python", "JavaScript"] },
       { label: "Frontend", items: ["React"] },
       { label: "Backend", items: ["FastAPI"] },
-      { label: "AI", items: ["OpenAI API", "LangChain"] },
-      { label: "Knowledge", items: ["ChromaDB (product context retrieval)"] },
-      { label: "Infrastructure", items: ["Background jobs for session analysis"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Infrastructure", items: ["Cloud Run", "Vercel"] },
     ],
-    techTagsPreview: ["OpenAI", "FastAPI", "LangChain"],
+    techTagsPreview: ["Claude", "FastAPI", "Cloud Run"],
     actions: [
       {
         label: "Try it →",
