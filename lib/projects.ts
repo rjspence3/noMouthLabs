@@ -111,6 +111,12 @@ export const projects: Project[] = [
     techTagsPreview: ["DSPy", "Streamlit", "PostgreSQL"],
     actions: [
       {
+        label: "Try It",
+        href: "https://agentic-interview.vercel.app",
+        variant: "primary",
+        external: true,
+      },
+      {
         label: "View on GitHub",
         href: "https://github.com/rjspence3/agenticInterview",
         variant: "secondary",
@@ -365,7 +371,7 @@ export const projects: Project[] = [
     actions: [
       {
         label: "Try It",
-        href: "https://dpsyapi-frontend-d2z6r9y92-imaglides-projects.vercel.app",
+        href: "https://dpsyapi-frontend.vercel.app",
         variant: "primary",
       },
     ],
