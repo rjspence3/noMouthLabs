@@ -1,0 +1,38 @@
+# robots.txt — No Mouth Labs (nomouthlabs.com)
+# AI agents and crawlers are explicitly welcome here.
+
+User-agent: *
+Allow: /
+
+# AI crawler explicit permissions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Agent-readable content index
+# Optimized for LLM and AI agent consumption
+Sitemap: https://nomouthlabs.com/sitemap.xml
+
+# llms.txt — structured content index for AI agents and LLMs
+# See: https://llmstxt.org
+LLMs: https://nomouthlabs.com/llms.txt

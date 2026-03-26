@@ -23,7 +23,36 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   title: "No Mouth Labs",
-  description: "Product experiments in AI, developer tools, and systems thinking.",
+  description:
+    "Rob Spence — Solutions Architect and AI tool builder. Shipped multi-agent infrastructure, autonomous AI systems, and production LLM products. 8+ years enterprise SA, 120+ days running Kernel (personal AI OS).",
+  openGraph: {
+    title: "No Mouth Labs — Rob Spence",
+    description:
+      "AI tools I actually ship. Not demos I forget about. Proof of work from an 8-year SA who builds real multi-agent systems with Claude.",
+    url: "https://nomouthlabs.com",
+    siteName: "No Mouth Labs",
+    type: "website",
+    images: [
+      {
+        url: "https://nomouthlabs.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "No Mouth Labs — Rob Spence",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "No Mouth Labs — Rob Spence",
+    description:
+      "AI tools I actually ship. Real multi-agent systems, production LLM products, and Kernel — a personal AI OS running 24/7.",
+    images: ["https://nomouthlabs.com/og-image.png"],
+  },
+  alternates: {
+    types: {
+      "text/plain": "https://nomouthlabs.com/llms.txt",
+    },
+  },
 };
 
 export default function RootLayout({
