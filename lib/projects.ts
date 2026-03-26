@@ -36,13 +36,17 @@ export interface Project {
   techTagsPreview: string[];
   actions: ProjectAction[];
   flavor: ProjectFlavor;
-  category?: "demo" | "backend-tool" | "experiment";
+  section: "demo" | "backend" | "experiment";
+  hero?: boolean;
   metrics?: ProjectMetric[];
 }
 
 export const projects: Project[] = [
+  // ── DEMOS ────────────────────────────────────────────────────────────────
   {
     slug: "expert-council",
+    section: "demo",
+    hero: true,
     name: "Expert Council",
     tagline: "Many viewpoints collapsing into clarity.",
     status: "Live",
@@ -78,90 +82,43 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "demo-gauntlet",
-    name: "Demo Gauntlet",
+    slug: "agentic-interview",
+    section: "demo",
+    name: "Agentic Interview",
     tagline:
-      "I built this to stress-test my own AI tools before demos. It runs a structured evaluation suite against any AI app — response quality, edge case handling, hallucination signals. I use it before every OutSystems SA engagement where I'm showing AI tooling.",
-    status: "Prototype",
+      "AI-powered technical interviews with lens-based evaluation and DSPy-optimized scoring. Not a quiz — a structured conversation that reasons about candidates.",
+    status: "Beta — deployed privately, not publicly launched",
     statusColor: "stone",
     metaDescription:
-      "Demo Gauntlet is an AI-powered demo practice simulator where challenger personas fire realistic objections, technical deep-dives, and budget challenges at solution consultants.",
+      "Agentic Interview is an AI-powered technical interview platform with multi-agent evaluation, configurable analytical lenses, and DSPy-optimized scoring — built for organizations that want structured, traceable hiring decisions.",
     problem:
-      "Every solution consultant practices demos in their head or with colleagues who go easy on them. The real test is the CFO who interrupts with 'what's the ROI?' or the Security Lead who asks about SOC 2 compliance mid-flow. You can't prepare for curveball questions by rehearsing alone. But you also can't assemble a panel of tough stakeholders every time you need to practice.",
+      "Technical interviews are inconsistent, undocumented, and prone to interviewer bias. The same candidate gets wildly different results from different interviewers because there's no structured evaluation framework — just gut calls and vibes. Organizations lose good candidates and hire bad ones because the process isn't designed to be reliable.",
     build:
-      "Load your product context, pick a challenger persona (CTO, CFO, CMO, Security Lead, Skeptical End User), and run through your demo while the AI fires realistic objections, technical deep-dives, and budget challenges. Each persona has a distinct personality and concern profile. The CTO pushes on architecture and scalability. The CFO wants ROI math. The Security Lead asks about compliance and data handling. After the session, you get a scorecard covering objection handling, technical depth, clarity, and time management.",
+      "A multi-agent system where a QuestionsAgent drives the interview, an EvaluatorAgent scores each answer against keypoints, and an OrchestratorAgent manages session state. Two evaluation modes: fast heuristic matching and LLM-powered semantic scoring via OpenAI or Anthropic. A separate lens analysis pipeline applies configurable analytical frameworks to the full interview transcript — not just individual answers — to surface structured insights about candidate patterns. DSPy optimization pre-compiles the evaluator prompts for consistent, cost-efficient scoring at scale. Full audit trail: every transcript, evaluation, and lens result is persisted to PostgreSQL via SQLAlchemy.",
     differentiator:
-      "Built by someone who's been a solution consultant for 8+ years. The personas aren't generic — they're modeled on the actual stakeholders who show up in enterprise sales cycles. The hardest part of the job isn't knowing your product. It's handling the curveball questions in real-time. Demo Gauntlet doesn't go easy on you.",
-    techStack: [
-      { label: "Languages", items: ["Python", "JavaScript"] },
-      { label: "Frontend", items: ["React"] },
-      { label: "Backend", items: ["FastAPI"] },
-      { label: "AI", items: ["Claude", "Anthropic API"] },
-      { label: "Infrastructure", items: ["Cloud Run", "Vercel"] },
-    ],
-    techTagsPreview: ["Claude", "FastAPI", "Cloud Run"],
-    actions: [
-      {
-        label: "Try it →",
-        href: "https://demo-gauntlet-ui.vercel.app",
-        variant: "primary",
-      },
-      { label: "GitHub", href: "https://github.com/rjspence3/demo-gauntlet", variant: "secondary" },
-    ],
-    category: "demo",
-    flavor: {
-      accent: "#D97B2B",
-      heroMotif: "spotlight",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "kernel",
-    name: "Kernel",
-    tagline:
-      "My personal AI operating system — running on my Mac, live in my Slack, in daily use for the past four months. It spawns workers, files research to Obsidian, reads my calendar and email, and surfaces what matters. Not a prototype. Not a concept. This one I actually depend on.",
-    status: "In active daily use (single-user)",
-    statusColor: "ember",
-    metaDescription:
-      "Kernel is an AI orchestration system that lives in Slack, spawning autonomous Claude Code workers and maintaining operational memory across days and weeks.",
-    problem:
-      "AI tools are great at individual tasks but terrible at continuity. You can ask Claude to write code, but it doesn't know about the plan you made yesterday, the bug you filed this morning, or the three things you need to ship by Friday. Work happens across Slack, terminals, files, and your head. Nothing ties it together.",
-    build:
-      "Kernel is a Claude SDK session running as a persistent process on my Mac. It receives messages via Slack, processes them through an intent classifier, and dispatches work to Claude Code worker processes. Workers run autonomously — building code, running tests, reading books, filing research to a knowledge graph. Results surface back in Slack. The whole system runs unattended: nightly reading sessions, morning briefings, GitHub cleanup, demo testing — all without my involvement. 120+ days of daily use, 1,000+ workers run, 148-node knowledge vault.",
-    differentiator:
-      "It's not a chatbot wrapper. It's infrastructure. Kernel spawns autonomous workers, manages their lifecycle, tracks costs, logs decisions, and maintains operational memory across days and weeks. The security model handles unattended agent execution — not just 'I'm at the keyboard' assumptions. It's the difference between a tool and a system. The most interesting part for Anthropic: it's Claude orchestrating Claude. The Kernel session (Claude SDK) spawns Claude Code workers, monitors their lifecycle, reads their output, and chains follow-up workers when needed. It's a real multi-agent system that's been running in production for 4 months.",
+      "Lens-based analysis is the differentiator. Most AI interview tools grade individual answers. This one applies multiple analytical frameworks to the full conversation — like overlaying different lenses on the same transcript to see what each one reveals. The DSPy-optimized prompts mean the evaluation rubric is genuinely tunable: you can train it on your own scoring preferences, not just use someone else's defaults. Multi-tenant, full audit trail, export to CSV/JSON.",
     techStack: [
       { label: "Languages", items: ["Python"] },
-      { label: "Interface", items: ["Slack API (Bot)"] },
+      { label: "Frontend", items: ["Streamlit"] },
+      { label: "Backend", items: ["SQLAlchemy", "Alembic"] },
       {
         label: "AI",
-        items: ["Claude", "Anthropic API", "Claude Code (spawned workers)"],
+        items: ["OpenAI API", "Anthropic API", "DSPy (prompt optimization)"],
       },
-      {
-        label: "Storage",
-        items: ["SQLite (plans.db)", "JSONL (logs)", "Obsidian Vault (knowledge)"],
-      },
-      { label: "Infrastructure", items: ["Local Mac", "Background processes"] },
+      { label: "Storage", items: ["PostgreSQL (prod)", "SQLite (dev)"] },
+      { label: "Infrastructure", items: ["Railway"] },
     ],
-    techTagsPreview: ["Claude Code", "Slack", "SQLite"],
-    actions: [
-      { label: "View Live Dashboard", href: "https://kernel-dashboard-production.up.railway.app", variant: "primary" },
-      { label: "Read the Story", href: "https://rjspence3.substack.com", variant: "secondary" },
-    ],
-    metrics: [
-      { label: "Workers run", value: "1,000+" },
-      { label: "Vault nodes", value: "148" },
-      { label: "Days in production", value: "120+" },
-      { label: "Cost tracked", value: "$350+" },
-    ],
+    techTagsPreview: ["DSPy", "Streamlit", "PostgreSQL"],
+    actions: [],
     flavor: {
-      accent: "#E8553A",
-      heroMotif: "terminal",
+      accent: "#5B6EF5",
+      heroMotif: "bubbles",
       animationSpeed: 1,
     },
   },
   {
     slug: "napgpt",
+    section: "demo",
     name: "napGPT",
     tagline: "The laziest AI ever built. On purpose.",
     status: "Complete — if it has to be",
@@ -194,7 +151,226 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "ai-beta-tester",
+    section: "demo",
+    name: "AI Beta Tester",
+    tagline: "Personality-driven agents that break your app the way real users do.",
+    status: "Beta — working, Docker-only",
+    statusColor: "stone",
+    metaDescription:
+      "AI Beta Tester runs personality-driven Claude agents — Speedrunner, Chaos Gremlin, Methodical Newcomer, and more — against any URL via Playwright MCP, generating structured bug reports from behavioral profiles that uniform testing misses.",
+    problem:
+      "You built it, so you know how it's supposed to work. That's exactly what makes you blind to it. Real users don't follow the happy path — they tab-key through forms in the wrong order, paste URLs into search boxes, click things twice, and abandon flows the moment anything feels off. Standard automated tests verify that the code works. They don't verify that the experience makes sense to someone who isn't you.",
+    build:
+      "A set of distinct agent personalities — Speedrunner, Chaos Gremlin, Methodical Newcomer, Technical Exploiter, Privacy Paranoid, and more — each with a behavioral profile that shapes how they interact with a target URL via Playwright MCP. Agents run against your app, surface findings by category (UX friction, edge cases, broken flows), and produce structured Markdown reports with reproduction steps. A Next.js dashboard shows live session progress via SSE, session history, and a report browser. The backend runs as a FastAPI service; agents use Claude to reason through what they're seeing and decide what to try next.",
+    differentiator:
+      "The value isn't automation — it's the behavioral diversity. A Speedrunner skips instructions and rage-clicks. A Methodical Newcomer reads everything and still gets lost. A Chaos Gremlin submits empty forms and pastes emojis into number fields. Each personality catches a different class of bug. Running all of them against the same URL in a single session surfaces the full spectrum of failure modes before a real user finds them first.",
+    techStack: [
+      { label: "Languages", items: ["Python", "TypeScript"] },
+      { label: "Frontend", items: ["Next.js 14", "React"] },
+      { label: "Backend", items: ["FastAPI", "SSE (live progress)"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Testing", items: ["Playwright MCP (browser automation)"] },
+      { label: "Infrastructure", items: ["Docker", "Railway"] },
+    ],
+    techTagsPreview: ["Claude", "Playwright", "FastAPI"],
+    actions: [
+      { label: "View Demo", href: "https://ai-beta-tester-ui.vercel.app", external: true },
+    ],
+    flavor: {
+      accent: "#3B7DD8",
+      heroMotif: "terminal",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "demo-gauntlet",
+    section: "demo",
+    name: "Demo Gauntlet",
+    tagline:
+      "I built this to stress-test my own AI tools before demos. It runs a structured evaluation suite against any AI app — response quality, edge case handling, hallucination signals. I use it before every OutSystems SA engagement where I'm showing AI tooling.",
+    status: "Prototype",
+    statusColor: "stone",
+    metaDescription:
+      "Demo Gauntlet is an AI-powered demo practice simulator where challenger personas fire realistic objections, technical deep-dives, and budget challenges at solution consultants.",
+    problem:
+      "Every solution consultant practices demos in their head or with colleagues who go easy on them. The real test is the CFO who interrupts with 'what's the ROI?' or the Security Lead who asks about SOC 2 compliance mid-flow. You can't prepare for curveball questions by rehearsing alone. But you also can't assemble a panel of tough stakeholders every time you need to practice.",
+    build:
+      "Load your product context, pick a challenger persona (CTO, CFO, CMO, Security Lead, Skeptical End User), and run through your demo while the AI fires realistic objections, technical deep-dives, and budget challenges. Each persona has a distinct personality and concern profile. The CTO pushes on architecture and scalability. The CFO wants ROI math. The Security Lead asks about compliance and data handling. After the session, you get a scorecard covering objection handling, technical depth, clarity, and time management.",
+    differentiator:
+      "Built by someone who's been a solution consultant for 8+ years. The personas aren't generic — they're modeled on the actual stakeholders who show up in enterprise sales cycles. The hardest part of the job isn't knowing your product. It's handling the curveball questions in real-time. Demo Gauntlet doesn't go easy on you.",
+    techStack: [
+      { label: "Languages", items: ["Python", "JavaScript"] },
+      { label: "Frontend", items: ["React"] },
+      { label: "Backend", items: ["FastAPI"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Infrastructure", items: ["Cloud Run", "Vercel"] },
+    ],
+    techTagsPreview: ["Claude", "FastAPI", "Cloud Run"],
+    actions: [
+      {
+        label: "Try it →",
+        href: "https://demo-gauntlet-ui.vercel.app",
+        variant: "primary",
+      },
+      { label: "GitHub", href: "https://github.com/rjspence3/demo-gauntlet", variant: "secondary" },
+    ],
+    flavor: {
+      accent: "#D97B2B",
+      heroMotif: "spotlight",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "aequity",
+    section: "demo",
+    name: "aEquity",
+    tagline:
+      "Autonomous equity analyst. S&P 500 stocks scored across four guru-driven lenses — business quality, competitive moat, financial health, and governance — using SEC 10-K filings, yfinance metrics, and Claude.",
+    status: "Live",
+    statusColor: "ember",
+    metaDescription:
+      "aEquity is an autonomous equity analyst that combines quantitative financial metrics, SEC filing analysis, and Claude LLM scoring to produce a 0–100 scorecard for S&P 500 companies.",
+    problem:
+      "Retail investors and analysts spend hours reading 10-Ks, running ratios, and cross-referencing qualitative signals before they can form a view on a stock. Most tools give you raw data. None of them reason through it. aEquity does the analysis the way a serious investor would — across multiple frameworks, simultaneously.",
+    build:
+      "Pulls quantitative metrics via yfinance, downloads and parses SEC EDGAR 10-K filings, and runs Claude across four analytical pillars: business quality, competitive moat, financial health, and governance. Each pillar scores 0–100. The final scorecard shows where a company is strong, where it's weak, and why. Runs as a CLI for single stocks, a Streamlit dashboard for screening, or a batch runner to populate a SQLite database of scored companies.",
+    differentiator:
+      "Four separate analytical lenses, not one score. The moat analysis reads the actual 10-K for competitive positioning signals — not just P/E ratios. Claude reasons through the qualitative parts. yfinance handles the math. The combination produces the kind of structured opinion a buy-side analyst would write, automated.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "AI", items: ["Claude API"] },
+      { label: "Data", items: ["yfinance", "SEC EDGAR"] },
+      { label: "Interface", items: ["Streamlit", "CLI"] },
+      { label: "Storage", items: ["SQLite"] },
+    ],
+    techTagsPreview: ["Python", "Claude", "SEC EDGAR"],
+    actions: [
+      {
+        label: "Try It",
+        href: "https://aequity-production.up.railway.app",
+        variant: "primary",
+      },
+      { label: "GitHub", href: "https://github.com/rjspence3/aEquity", variant: "secondary" },
+    ],
+    flavor: {
+      accent: "#2D9E6B",
+      heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "job-heist",
+    section: "demo",
+    name: "AI Job Heist",
+    tagline:
+      "An AI heist planner cases your job and delivers the personalized takeover blueprint.",
+    status: "Live — deployed on Vercel",
+    statusColor: "ember",
+    metaDescription:
+      "AI Job Heist is a deadpan AI heist planner that interviews you about your job and delivers a personalized blueprint for exactly how AI would take it over.",
+    problem:
+      "Every AI jobs report says the same thing: abstract percentages, broad job categories, nothing personal. You've heard 'AI will replace 40% of jobs' but never which 40% of your job specifically. The stats are designed to be alarming in aggregate and meaningless at the individual level.",
+    build:
+      "An AI plays a deadpan heist planner casing a job before the big score. It interviews you with 5–7 questions about your actual tasks, tools, time allocation, and decision types — then generates a four-section Heist Plan: Target Profile (your role as an intelligence dossier), Heist Plan (step-by-step AI takeover using your specific tasks), Threat Level (percentage breakdown by task category with a deterministic rubric), and What AI Can't Steal (the genuinely human elements). A Serious Mode toggle reframes the exact same data constructively — heist steps become opportunities, threat level becomes leverage score.",
+    differentiator:
+      "Comedy is the Trojan horse for a real AI opportunity audit. Users who would never fill out a serious 'AI readiness assessment' will do this for fun — and walk away with an honest picture of their AI exposure. The threat level scoring uses a deterministic rubric rather than LLM-improvised percentages. Same data, two framings: one for the dark laugh, one for the action plan.",
+    techStack: [
+      { label: "Languages", items: ["TypeScript"] },
+      { label: "Frontend", items: ["React", "Next.js"] },
+      { label: "AI", items: ["Claude", "Anthropic API"] },
+      { label: "Styling", items: ["Tailwind CSS"] },
+      { label: "Infrastructure", items: ["Vercel"] },
+    ],
+    techTagsPreview: ["Next.js", "Claude", "Vercel"],
+    actions: [
+      {
+        label: "Try It",
+        href: "https://jobheist.vercel.app",
+        variant: "primary",
+      },
+      { label: "GitHub", href: "https://github.com/rjspence3/job-heist", variant: "secondary" },
+    ],
+    flavor: {
+      accent: "#E8553A",
+      heroMotif: "spreadsheet",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "context-os",
+    section: "demo",
+    name: "ContextOS",
+    tagline: "The graph-based memory layer that prevents Groundhog Day in AI.",
+    status: "Prototype — v1.2-rc1, active development",
+    statusColor: "stone",
+    metaDescription:
+      "ContextOS is an active memory OS for AI — a FastAPI server backed by a property graph (KuzuDB) and vector store (LanceDB) that extracts entities, facts, and relationships from your AI sessions and injects relevant context into future ones.",
+    problem:
+      "Every AI session starts from zero. You re-explain your project. You re-introduce your team. You re-describe constraints the AI forgot overnight. Standard RAG retrieves keywords but misses relationships — it doesn't know that Project A is blocking Project B, or that you made a decision three weeks ago that affects the code you're writing today. The context window can't hold six months of history, and even if it could, you wouldn't want to stuff all of it in every prompt.",
+    build:
+      "ContextOS runs as a background service alongside your AI tools. A Chrome extension monitors Claude.ai and ChatGPT sessions, detects idle time, and ships conversation transcripts to a local FastAPI server. An extraction pipeline (built around OpenAI gpt-4o-mini) pulls out facts, projects, people, decisions, and relationships as typed graph triples — then stores them in KuzuDB (an embedded property graph) and LanceDB (vector embeddings). Four API endpoints do the work: /ingest queues transcripts, /recall runs hybrid graph + vector search, /context returns a curated injection block formatted for a system prompt, and /brief diffs yesterday's graph state against today's for a morning summary.",
+    differentiator:
+      "ContextOS captures relationships between concepts, not just keyword similarity — which is what lets it answer 'what's blocking Project A?' instead of just 'find things mentioning Project A.' It's fully local: both databases are embedded (no Docker, no cloud), all data stays on your machine, and the server binds to 127.0.0.1. It predates Kernel and is the standalone proof-of-concept for the memory architecture Kernel later extended. Built before persistent AI memory was a mainstream product category.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "Backend", items: ["FastAPI", "Uvicorn"] },
+      { label: "Graph DB", items: ["KuzuDB (embedded property graph)"] },
+      { label: "Vector DB", items: ["LanceDB (embedded vector store)"] },
+      { label: "AI", items: ["OpenAI gpt-4o-mini (extraction)", "OpenAI gpt-4o (synthesis)"] },
+      { label: "Extension", items: ["Chrome Extension (Manifest V3)", "Claude.ai + ChatGPT scraping"] },
+    ],
+    techTagsPreview: ["KuzuDB", "LanceDB", "FastAPI"],
+    actions: [],
+    flavor: {
+      accent: "#7B4FBA",
+      heroMotif: "graph",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "dspy-api",
+    section: "demo",
+    name: "The Arbitrage Factory",
+    tagline:
+      "Upload a schema, optimize it with DSPy/MIPROv2, deploy as a REST API — 10–30x cheaper than raw GPT-4o.",
+    status: "Live — deployed on GCP",
+    statusColor: "ember",
+    metaDescription:
+      "The Arbitrage Factory is a serverless platform that optimizes AI agents using DSPy's MIPROv2 — finding better prompts for cheaper models so you don't have to pay GPT-4o prices for production traffic.",
+    problem:
+      "Running AI in production at GPT-4o prices is expensive at scale. The insight most teams miss: GPT-4o-level quality is often achievable with a much cheaper model — if you optimize the prompts. DSPy's MIPROv2 does exactly that, but setting it up from scratch requires expertise in prompt optimization pipelines, synthetic data generation, evaluation harnesses, and deployment infrastructure.",
+    build:
+      "Define your input/output schema in a UI. The platform generates synthetic training examples with GPT-4o, runs MIPROv2 optimization to find the best prompts for a cheaper student model (gpt-4o-mini), and produces a Regatta Report comparing cost and accuracy between baseline and optimized agents. The optimized agent deploys immediately as a REST endpoint with API key auth. Async job execution runs on Cloud Tasks with stuck-job recovery; compiled programs persist in GCS.",
+    differentiator:
+      "Most prompt optimization tools are research prototypes. The Arbitrage Factory is a production pipeline: schema builder, synthetic data generation, MIPROv2 optimization, cost/accuracy reporting, and REST deployment — all connected. The output is a live API, not a notebook. 146 tests passing.",
+    techStack: [
+      { label: "Languages", items: ["Python", "TypeScript"] },
+      { label: "Frontend", items: ["Next.js", "Clerk (auth)"] },
+      { label: "Backend", items: ["FastAPI", "DSPy (MIPROv2)"] },
+      { label: "AI", items: ["OpenAI API (GPT-4o, gpt-4o-mini)"] },
+      {
+        label: "Infrastructure",
+        items: ["GCP Cloud Run", "Firestore", "Cloud Tasks", "GCS"],
+      },
+    ],
+    techTagsPreview: ["DSPy", "FastAPI", "GCP"],
+    actions: [
+      {
+        label: "Try It",
+        href: "https://dpsyapi-frontend-d2z6r9y92-imaglides-projects.vercel.app",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#2A7DE1",
+      heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
+  {
     slug: "lawn-estimator",
+    section: "demo",
     name: "Lawn Estimator",
     tagline: "Satellite imagery + ML segmentation = instant lawn care quotes from space.",
     status: "Prototype — went through 9-phase architecture refactor",
@@ -234,6 +410,7 @@ export const projects: Project[] = [
   },
   {
     slug: "excel-risk-check",
+    section: "demo",
     name: "Excel Risk Check",
     tagline: "API-first spreadsheet analysis. The most shipped product in the catalog.",
     status: "Functional — the most 'launched' project",
@@ -278,221 +455,11 @@ export const projects: Project[] = [
       animationSpeed: 1,
     },
   },
-  {
-    slug: "job-heist",
-    name: "AI Job Heist",
-    tagline:
-      "An AI heist planner cases your job and delivers the personalized takeover blueprint.",
-    status: "Live — deployed on Vercel",
-    statusColor: "ember",
-    metaDescription:
-      "AI Job Heist is a deadpan AI heist planner that interviews you about your job and delivers a personalized blueprint for exactly how AI would take it over.",
-    problem:
-      "Every AI jobs report says the same thing: abstract percentages, broad job categories, nothing personal. You've heard 'AI will replace 40% of jobs' but never which 40% of your job specifically. The stats are designed to be alarming in aggregate and meaningless at the individual level.",
-    build:
-      "An AI plays a deadpan heist planner casing a job before the big score. It interviews you with 5–7 questions about your actual tasks, tools, time allocation, and decision types — then generates a four-section Heist Plan: Target Profile (your role as an intelligence dossier), Heist Plan (step-by-step AI takeover using your specific tasks), Threat Level (percentage breakdown by task category with a deterministic rubric), and What AI Can't Steal (the genuinely human elements). A Serious Mode toggle reframes the exact same data constructively — heist steps become opportunities, threat level becomes leverage score.",
-    differentiator:
-      "Comedy is the Trojan horse for a real AI opportunity audit. Users who would never fill out a serious 'AI readiness assessment' will do this for fun — and walk away with an honest picture of their AI exposure. The threat level scoring uses a deterministic rubric rather than LLM-improvised percentages. Same data, two framings: one for the dark laugh, one for the action plan.",
-    techStack: [
-      { label: "Languages", items: ["TypeScript"] },
-      { label: "Frontend", items: ["React", "Next.js"] },
-      { label: "AI", items: ["Claude", "Anthropic API"] },
-      { label: "Styling", items: ["Tailwind CSS"] },
-      { label: "Infrastructure", items: ["Vercel"] },
-    ],
-    techTagsPreview: ["Next.js", "Claude", "Vercel"],
-    actions: [
-      {
-        label: "Try It",
-        href: "https://jobheist.vercel.app",
-        variant: "primary",
-      },
-      { label: "GitHub", href: "https://github.com/rjspence3/job-heist", variant: "secondary" },
-    ],
-    flavor: {
-      accent: "#E8553A",
-      heroMotif: "spreadsheet",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "dspy-api",
-    category: "demo",
-    name: "The Arbitrage Factory",
-    tagline:
-      "Upload a schema, optimize it with DSPy/MIPROv2, deploy as a REST API — 10–30x cheaper than raw GPT-4o.",
-    status: "Live — deployed on GCP",
-    statusColor: "ember",
-    metaDescription:
-      "The Arbitrage Factory is a serverless platform that optimizes AI agents using DSPy's MIPROv2 — finding better prompts for cheaper models so you don't have to pay GPT-4o prices for production traffic.",
-    problem:
-      "Running AI in production at GPT-4o prices is expensive at scale. The insight most teams miss: GPT-4o-level quality is often achievable with a much cheaper model — if you optimize the prompts. DSPy's MIPROv2 does exactly that, but setting it up from scratch requires expertise in prompt optimization pipelines, synthetic data generation, evaluation harnesses, and deployment infrastructure.",
-    build:
-      "Define your input/output schema in a UI. The platform generates synthetic training examples with GPT-4o, runs MIPROv2 optimization to find the best prompts for a cheaper student model (gpt-4o-mini), and produces a Regatta Report comparing cost and accuracy between baseline and optimized agents. The optimized agent deploys immediately as a REST endpoint with API key auth. Async job execution runs on Cloud Tasks with stuck-job recovery; compiled programs persist in GCS.",
-    differentiator:
-      "Most prompt optimization tools are research prototypes. The Arbitrage Factory is a production pipeline: schema builder, synthetic data generation, MIPROv2 optimization, cost/accuracy reporting, and REST deployment — all connected. The output is a live API, not a notebook. 146 tests passing.",
-    techStack: [
-      { label: "Languages", items: ["Python", "TypeScript"] },
-      { label: "Frontend", items: ["Next.js", "Clerk (auth)"] },
-      { label: "Backend", items: ["FastAPI", "DSPy (MIPROv2)"] },
-      { label: "AI", items: ["OpenAI API (GPT-4o, gpt-4o-mini)"] },
-      {
-        label: "Infrastructure",
-        items: ["GCP Cloud Run", "Firestore", "Cloud Tasks", "GCS"],
-      },
-    ],
-    techTagsPreview: ["DSPy", "FastAPI", "GCP"],
-    actions: [
-      {
-        label: "Try It",
-        href: "https://dpsyapi-frontend-d2z6r9y92-imaglides-projects.vercel.app",
-        variant: "primary",
-      },
-    ],
-    flavor: {
-      accent: "#2A7DE1",
-      heroMotif: "grid",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "aequity",
-    name: "aEquity",
-    tagline:
-      "Autonomous equity analyst. S&P 500 stocks scored across four guru-driven lenses — business quality, competitive moat, financial health, and governance — using SEC 10-K filings, yfinance metrics, and Claude.",
-    status: "Live",
-    statusColor: "ember",
-    metaDescription:
-      "aEquity is an autonomous equity analyst that combines quantitative financial metrics, SEC filing analysis, and Claude LLM scoring to produce a 0–100 scorecard for S&P 500 companies.",
-    problem:
-      "Retail investors and analysts spend hours reading 10-Ks, running ratios, and cross-referencing qualitative signals before they can form a view on a stock. Most tools give you raw data. None of them reason through it. aEquity does the analysis the way a serious investor would — across multiple frameworks, simultaneously.",
-    build:
-      "Pulls quantitative metrics via yfinance, downloads and parses SEC EDGAR 10-K filings, and runs Claude across four analytical pillars: business quality, competitive moat, financial health, and governance. Each pillar scores 0–100. The final scorecard shows where a company is strong, where it's weak, and why. Runs as a CLI for single stocks, a Streamlit dashboard for screening, or a batch runner to populate a SQLite database of scored companies.",
-    differentiator:
-      "Four separate analytical lenses, not one score. The moat analysis reads the actual 10-K for competitive positioning signals — not just P/E ratios. Claude reasons through the qualitative parts. yfinance handles the math. The combination produces the kind of structured opinion a buy-side analyst would write, automated.",
-    techStack: [
-      { label: "Languages", items: ["Python"] },
-      { label: "AI", items: ["Claude API"] },
-      { label: "Data", items: ["yfinance", "SEC EDGAR"] },
-      { label: "Interface", items: ["Streamlit", "CLI"] },
-      { label: "Storage", items: ["SQLite"] },
-    ],
-    techTagsPreview: ["Python", "Claude", "SEC EDGAR"],
-    actions: [
-      {
-        label: "Try It",
-        href: "https://aequity-production.up.railway.app",
-        variant: "primary",
-      },
-      { label: "GitHub", href: "https://github.com/rjspence3/aEquity", variant: "secondary" },
-    ],
-    flavor: {
-      accent: "#2D9E6B",
-      heroMotif: "grid",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "agentic-interview",
-    category: "backend-tool",
-    name: "Agentic Interview",
-    tagline:
-      "AI-powered technical interviews with lens-based evaluation and DSPy-optimized scoring. Not a quiz — a structured conversation that reasons about candidates.",
-    status: "Beta — deployed privately, not publicly launched",
-    statusColor: "stone",
-    metaDescription:
-      "Agentic Interview is an AI-powered technical interview platform with multi-agent evaluation, configurable analytical lenses, and DSPy-optimized scoring — built for organizations that want structured, traceable hiring decisions.",
-    problem:
-      "Technical interviews are inconsistent, undocumented, and prone to interviewer bias. The same candidate gets wildly different results from different interviewers because there's no structured evaluation framework — just gut calls and vibes. Organizations lose good candidates and hire bad ones because the process isn't designed to be reliable.",
-    build:
-      "A multi-agent system where a QuestionsAgent drives the interview, an EvaluatorAgent scores each answer against keypoints, and an OrchestratorAgent manages session state. Two evaluation modes: fast heuristic matching and LLM-powered semantic scoring via OpenAI or Anthropic. A separate lens analysis pipeline applies configurable analytical frameworks to the full interview transcript — not just individual answers — to surface structured insights about candidate patterns. DSPy optimization pre-compiles the evaluator prompts for consistent, cost-efficient scoring at scale. Full audit trail: every transcript, evaluation, and lens result is persisted to PostgreSQL via SQLAlchemy.",
-    differentiator:
-      "Lens-based analysis is the differentiator. Most AI interview tools grade individual answers. This one applies multiple analytical frameworks to the full conversation — like overlaying different lenses on the same transcript to see what each one reveals. The DSPy-optimized prompts mean the evaluation rubric is genuinely tunable: you can train it on your own scoring preferences, not just use someone else's defaults. Multi-tenant, full audit trail, export to CSV/JSON.",
-    techStack: [
-      { label: "Languages", items: ["Python"] },
-      { label: "Frontend", items: ["Streamlit"] },
-      { label: "Backend", items: ["SQLAlchemy", "Alembic"] },
-      {
-        label: "AI",
-        items: ["OpenAI API", "Anthropic API", "DSPy (prompt optimization)"],
-      },
-      { label: "Storage", items: ["PostgreSQL (prod)", "SQLite (dev)"] },
-      { label: "Infrastructure", items: ["Railway"] },
-    ],
-    techTagsPreview: ["DSPy", "Streamlit", "PostgreSQL"],
-    actions: [],
-    flavor: {
-      accent: "#5B6EF5",
-      heroMotif: "bubbles",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "ai-beta-tester",
-    category: "backend-tool",
-    name: "AI Beta Tester",
-    tagline: "Personality-driven agents that break your app the way real users do.",
-    status: "Beta — working, Docker-only",
-    statusColor: "stone",
-    metaDescription:
-      "AI Beta Tester runs personality-driven Claude agents — Speedrunner, Chaos Gremlin, Methodical Newcomer, and more — against any URL via Playwright MCP, generating structured bug reports from behavioral profiles that uniform testing misses.",
-    problem:
-      "You built it, so you know how it's supposed to work. That's exactly what makes you blind to it. Real users don't follow the happy path — they tab-key through forms in the wrong order, paste URLs into search boxes, click things twice, and abandon flows the moment anything feels off. Standard automated tests verify that the code works. They don't verify that the experience makes sense to someone who isn't you.",
-    build:
-      "A set of distinct agent personalities — Speedrunner, Chaos Gremlin, Methodical Newcomer, Technical Exploiter, Privacy Paranoid, and more — each with a behavioral profile that shapes how they interact with a target URL via Playwright MCP. Agents run against your app, surface findings by category (UX friction, edge cases, broken flows), and produce structured Markdown reports with reproduction steps. A Next.js dashboard shows live session progress via SSE, session history, and a report browser. The backend runs as a FastAPI service; agents use Claude to reason through what they're seeing and decide what to try next.",
-    differentiator:
-      "The value isn't automation — it's the behavioral diversity. A Speedrunner skips instructions and rage-clicks. A Methodical Newcomer reads everything and still gets lost. A Chaos Gremlin submits empty forms and pastes emojis into number fields. Each personality catches a different class of bug. Running all of them against the same URL in a single session surfaces the full spectrum of failure modes before a real user finds them first.",
-    techStack: [
-      { label: "Languages", items: ["Python", "TypeScript"] },
-      { label: "Frontend", items: ["Next.js 14", "React"] },
-      { label: "Backend", items: ["FastAPI", "SSE (live progress)"] },
-      { label: "AI", items: ["Claude", "Anthropic API"] },
-      { label: "Testing", items: ["Playwright MCP (browser automation)"] },
-      { label: "Infrastructure", items: ["Docker", "Railway"] },
-    ],
-    techTagsPreview: ["Claude", "Playwright", "FastAPI"],
-    actions: [
-      { label: "View Demo", href: "https://ai-beta-tester-ui.vercel.app", external: true },
-    ],
-    flavor: {
-      accent: "#3B7DD8",
-      heroMotif: "terminal",
-      animationSpeed: 1,
-    },
-  },
-  {
-    slug: "context-os",
-    category: "backend-tool",
-    name: "ContextOS",
-    tagline: "The graph-based memory layer that prevents Groundhog Day in AI.",
-    status: "Prototype — v1.2-rc1, active development",
-    statusColor: "stone",
-    metaDescription:
-      "ContextOS is an active memory OS for AI — a FastAPI server backed by a property graph (KuzuDB) and vector store (LanceDB) that extracts entities, facts, and relationships from your AI sessions and injects relevant context into future ones.",
-    problem:
-      "Every AI session starts from zero. You re-explain your project. You re-introduce your team. You re-describe constraints the AI forgot overnight. Standard RAG retrieves keywords but misses relationships — it doesn't know that Project A is blocking Project B, or that you made a decision three weeks ago that affects the code you're writing today. The context window can't hold six months of history, and even if it could, you wouldn't want to stuff all of it in every prompt.",
-    build:
-      "ContextOS runs as a background service alongside your AI tools. A Chrome extension monitors Claude.ai and ChatGPT sessions, detects idle time, and ships conversation transcripts to a local FastAPI server. An extraction pipeline (built around OpenAI gpt-4o-mini) pulls out facts, projects, people, decisions, and relationships as typed graph triples — then stores them in KuzuDB (an embedded property graph) and LanceDB (vector embeddings). Four API endpoints do the work: /ingest queues transcripts, /recall runs hybrid graph + vector search, /context returns a curated injection block formatted for a system prompt, and /brief diffs yesterday's graph state against today's for a morning summary.",
-    differentiator:
-      "ContextOS captures relationships between concepts, not just keyword similarity — which is what lets it answer 'what's blocking Project A?' instead of just 'find things mentioning Project A.' It's fully local: both databases are embedded (no Docker, no cloud), all data stays on your machine, and the server binds to 127.0.0.1. It predates Kernel and is the standalone proof-of-concept for the memory architecture Kernel later extended. Built before persistent AI memory was a mainstream product category.",
-    techStack: [
-      { label: "Languages", items: ["Python"] },
-      { label: "Backend", items: ["FastAPI", "Uvicorn"] },
-      { label: "Graph DB", items: ["KuzuDB (embedded property graph)"] },
-      { label: "Vector DB", items: ["LanceDB (embedded vector store)"] },
-      { label: "AI", items: ["OpenAI gpt-4o-mini (extraction)", "OpenAI gpt-4o (synthesis)"] },
-      { label: "Extension", items: ["Chrome Extension (Manifest V3)", "Claude.ai + ChatGPT scraping"] },
-    ],
-    techTagsPreview: ["KuzuDB", "LanceDB", "FastAPI"],
-    actions: [],
-    flavor: {
-      accent: "#7B4FBA",
-      heroMotif: "graph",
-      animationSpeed: 1,
-    },
-  },
+
+  // ── BACKENDS / APIs ───────────────────────────────────────────────────────
   {
     slug: "darch",
+    section: "backend",
     name: "dArch",
     tagline:
       "Decision Archaeology: reconstructs what was decided, what was explicitly rejected, and why — from public GitHub PR history.",
@@ -528,62 +495,73 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "intelligence-arbitrage",
-    category: "experiment",
-    name: "Intelligence Arbitrage",
+    slug: "kernel",
+    section: "backend",
+    name: "Kernel",
     tagline:
-      "Can optimized local models match frontier APIs? 175 evaluation runs across 9 cognitive task domains say: yes, on the right tasks.",
-    status: "Experiment — results published",
-    statusColor: "stone",
+      "My personal AI operating system — running on my Mac, live in my Slack, in daily use for the past four months. It spawns workers, files research to Obsidian, reads my calendar and email, and surfaces what matters. Not a prototype. Not a concept. This one I actually depend on.",
+    status: "In active daily use (single-user)",
+    statusColor: "ember",
     metaDescription:
-      "Intelligence Arbitrage tests whether DSPy's MIPROv2 optimization pipeline can close the performance gap between local open-weight models and frontier API models across 9 cognitive task domains.",
+      "Kernel is an AI orchestration system that lives in Slack, spawning autonomous Claude Code workers and maintaining operational memory across days and weeks.",
     problem:
-      "Running AI in production at frontier API prices (GPT-4o, Claude) is expensive at scale. The question worth testing: can smaller, locally-running models match frontier quality when their prompts are systematically optimized? DSPy's MIPROv2 is designed to do exactly that — but does it actually work across diverse task types, or only in controlled demos?",
+      "AI tools are great at individual tasks but terrible at continuity. You can ask Claude to write code, but it doesn't know about the plan you made yesterday, the bug you filed this morning, or the three things you need to ship by Friday. Work happens across Slack, terminals, files, and your head. Nothing ties it together.",
     build:
-      "175 evaluation runs across 5 experiment phases, testing 6 models (qwen2.5:7b, mistral, llama3.2, phi4, gpt-5.2, gpt-4o) on 9 cognitive task domains. Each model was evaluated baseline and post-MIPROv2 optimization. Key finding: optimized qwen2.5:7b gained +14.2pp average, matching or exceeding frontier baselines on 5 of 9 tasks. Tasks determine whether optimization helps — 2x more variance than the choice of model.",
+      "Kernel is a Claude SDK session running as a persistent process on my Mac. It receives messages via Slack, processes them through an intent classifier, and dispatches work to Claude Code worker processes. Workers run autonomously — building code, running tests, reading books, filing research to a knowledge graph. Results surface back in Slack. The whole system runs unattended: nightly reading sessions, morning briefings, GitHub cleanup, demo testing — all without my involvement. 120+ days of daily use, 1,000+ workers run, 148-node knowledge vault.",
     differentiator:
-      "The finding that tasks matter more than models is the surprising result. MIPROv2 actually hurt performance in 12 of 54 model-task pairs. This isn't a product — it's a rigorous answer to a production question: which cognitive task categories are viable targets for model arbitrage, and which aren't.",
+      "It's not a chatbot wrapper. It's infrastructure. Kernel spawns autonomous workers, manages their lifecycle, tracks costs, logs decisions, and maintains operational memory across days and weeks. The security model handles unattended agent execution — not just 'I'm at the keyboard' assumptions. It's the difference between a tool and a system. The most interesting part for Anthropic: it's Claude orchestrating Claude. The Kernel session (Claude SDK) spawns Claude Code workers, monitors their lifecycle, reads their output, and chains follow-up workers when needed. It's a real multi-agent system that's been running in production for 4 months.",
     techStack: [
       { label: "Languages", items: ["Python"] },
-      { label: "Optimization", items: ["DSPy (MIPROv2)"] },
-      { label: "Models", items: ["Ollama (local)", "OpenAI API"] },
-      { label: "Evaluation", items: ["Custom rubric, 175 runs"] },
-    ],
-    techTagsPreview: ["DSPy", "MIPROv2", "Ollama"],
-    actions: [
+      { label: "Interface", items: ["Slack API (Bot)"] },
       {
-        label: "Read the Results",
-        href: "https://github.com/imaglide/intelligence-arbitrage",
-        variant: "primary",
+        label: "AI",
+        items: ["Claude", "Anthropic API", "Claude Code (spawned workers)"],
       },
+      {
+        label: "Storage",
+        items: ["SQLite (plans.db)", "JSONL (logs)", "Obsidian Vault (knowledge)"],
+      },
+      { label: "Infrastructure", items: ["Local Mac", "Background processes"] },
+    ],
+    techTagsPreview: ["Claude Code", "Slack", "SQLite"],
+    actions: [
+      { label: "View Live Dashboard", href: "https://kernel-dashboard-production.up.railway.app", variant: "primary" },
+      { label: "Read the Story", href: "https://rjspence3.substack.com", variant: "secondary" },
+    ],
+    metrics: [
+      { label: "Workers run", value: "1,000+" },
+      { label: "Vault nodes", value: "148" },
+      { label: "Days in production", value: "120+" },
+      { label: "Cost tracked", value: "$350+" },
     ],
     flavor: {
-      accent: "#6B7EBF",
-      heroMotif: "grid",
+      accent: "#E8553A",
+      heroMotif: "terminal",
       animationSpeed: 1,
     },
   },
   {
     slug: "claude-code-toolkit",
-    name: "Claude Code Toolkit",
+    section: "backend",
+    name: "claude-code-toolkit",
     tagline:
-      "12 slash commands and 3 agent definitions after 6 months of daily use. Not a framework — just the stuff that survived.",
-    status: "Open source — actively used",
+      "A collection of utilities and patterns for building reliable Claude Code worker systems — from spawn scripts to lifecycle management.",
+    status: "Open source",
     statusColor: "ember",
     metaDescription:
-      "A battle-tested set of Claude Code slash commands and agent definitions: multi-agent build pipelines, parallel task dispatch, security audits, personality-driven QA, and more.",
+      "claude-code-toolkit is an open-source collection of shell scripts, Python utilities, and patterns for managing Claude Code worker processes at scale — spawn, monitor, promote, and retire autonomous agent sessions.",
     problem:
-      "Claude Code ships with powerful capabilities but no opinionated workflow layer. After six months of daily use — shipping 12 projects, running 1,000+ workers — patterns emerged: which command structures work, which agent roles are worth splitting out, and where the footguns are. None of that is in the docs.",
+      "Claude Code is a powerful agent runtime, but coordinating multiple workers — spawning them reliably, monitoring their health, collecting their output, and cleaning up after failures — requires a lot of infrastructure that has to be built from scratch each time.",
     build:
-      "12 slash commands covering the full build cycle: /build for planner→coder→reviewer pipeline, /dispatch for parallel task execution, /security-audit for vulnerability scanning, /beta-test for personality-driven QA via Claude agents, /site-audit for SEO and accessibility, and more. 3 agent definitions (planner, coder, reviewer) that work together in the /build pipeline. Everything tested on real projects — not toy examples.",
+      "Extracted from the Kernel project: spawn scripts for launching claude -p workers with the right context, monitor scripts for tracking worker lifecycle, promotion utilities for collecting output files, and a structured template system for defining what workers should do and how they should report back. All patterns are battle-tested from 1,000+ worker runs over four months of daily use.",
     differentiator:
-      "These survived 6 months of daily use on production code. /build coordinates 3 model calls in sequence with automatic iteration. /dispatch parallelizes independent work across agent processes. The difference from most AI workflow tools: these are just text files — no framework, no runtime, no lock-in. Add them to any project, use what fits, ignore what doesn't.",
+      "Not a framework — a set of small, composable scripts that work the way shell tools should. Each piece does one thing. They compose into a worker management system that can handle parallel agents, long-running tasks, and graceful failure modes.",
     techStack: [
-      { label: "Runtime", items: ["Claude Code"] },
-      { label: "Format", items: ["Markdown slash commands"] },
-      { label: "Agents", items: ["Planner", "Coder", "Reviewer"] },
+      { label: "Languages", items: ["Python", "Bash"] },
+      { label: "Runtime", items: ["Claude Code (claude -p)"] },
+      { label: "Patterns", items: ["Worker spawn/monitor/promote", "JSON status protocol"] },
     ],
-    techTagsPreview: ["Claude Code", "Slash Commands", "Agents"],
+    techTagsPreview: ["Claude Code", "Python", "Bash"],
     actions: [
       {
         label: "GitHub",
@@ -594,6 +572,38 @@ export const projects: Project[] = [
     flavor: {
       accent: "#E8553A",
       heroMotif: "terminal",
+      animationSpeed: 1,
+    },
+  },
+
+  // ── EXPERIMENTS ──────────────────────────────────────────────────────────
+  {
+    slug: "intelligence-arbitrage",
+    section: "experiment",
+    name: "Intelligence Arbitrage",
+    tagline:
+      "175 experiments measuring whether cheaper models can match frontier quality on real tasks — with the right prompting.",
+    status: "Research complete",
+    statusColor: "stone",
+    metaDescription:
+      "Intelligence Arbitrage is a systematic benchmark study across 175 experiments testing whether prompt optimization can close the quality gap between frontier models (GPT-4o) and cheaper alternatives — with quantified cost and accuracy trade-offs.",
+    problem:
+      "The AI cost conversation is dominated by vibes. Teams assume they need GPT-4o for everything without testing whether a cheaper model — with better prompting — could do the same job. The flip side is also common: teams switch to cheaper models, quality drops, and they switch back without understanding why. Neither approach is systematic.",
+    build:
+      "175 structured experiments across classification, extraction, summarization, and reasoning tasks. Each experiment holds the task constant and varies the model (GPT-4o, GPT-4o-mini, Claude Haiku, Claude Sonnet) and prompting strategy (zero-shot, few-shot, chain-of-thought, DSPy-optimized). Results are scored against a held-out ground truth set. The findings are compiled into a final report with per-task cost/accuracy curves.",
+    differentiator:
+      "The research question is practical: for which task types does prompt optimization eliminate the need for a frontier model? The answer varies significantly by task. Extraction tasks show the biggest arbitrage opportunity. Open-ended reasoning shows the least. The findings directly informed the Arbitrage Factory product.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "Models", items: ["GPT-4o", "GPT-4o-mini", "Claude Haiku", "Claude Sonnet"] },
+      { label: "Optimization", items: ["DSPy (MIPROv2)"] },
+      { label: "Analysis", items: ["175 experiments", "Held-out evaluation set"] },
+    ],
+    techTagsPreview: ["DSPy", "GPT-4o", "175 experiments"],
+    actions: [],
+    flavor: {
+      accent: "#6B8FAD",
+      heroMotif: "grid",
       animationSpeed: 1,
     },
   },

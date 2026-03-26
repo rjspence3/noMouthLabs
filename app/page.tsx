@@ -4,16 +4,13 @@ import NMLMark from "@/components/NMLMark";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import AnimateIn from "@/components/AnimateIn";
-import { projects, getProject } from "@/lib/projects";
+import { projects } from "@/lib/projects";
 
-const featuredSlug = "expert-council";
-const featuredProject = getProject(featuredSlug);
+const featuredProject = projects.find((p) => p.hero);
 
-const demoProjects = projects.filter(
-  (p) => p.category === "demo" || (!p.category && p.slug !== featuredSlug)
-);
-const backendProjects = projects.filter((p) => p.category === "backend-tool");
-const experimentProjects = projects.filter((p) => p.category === "experiment");
+const demoProjects = projects.filter((p) => p.section === "demo" && !p.hero);
+const backendProjects = projects.filter((p) => p.section === "backend");
+const experimentProjects = projects.filter((p) => p.section === "experiment");
 
 export const metadata: Metadata = {
   title: "No Mouth Labs",
@@ -31,7 +28,7 @@ export default function Home() {
     >
       <main className="max-w-5xl mx-auto px-6 py-24">
         {/* Site header */}
-        <div className="flex flex-col items-center text-center mb-20">
+        <header className="flex flex-col items-center text-center mb-20">
           <AnimateIn>
             <NMLMark size="lg" />
           </AnimateIn>
@@ -62,12 +59,12 @@ export default function Home() {
               fully shipped. This portfolio is my proof of work.
             </p>
           </AnimateIn>
-        </div>
+        </header>
 
         {/* Featured: Expert Council */}
         {featuredProject && (
           <AnimateIn delay={100}>
-            <div className="mb-20">
+            <section aria-label="Featured project" className="mb-20">
               <div className="flex items-center gap-3 mb-6">
                 <span
                   className="font-mono text-xs uppercase tracking-widest"
@@ -80,7 +77,7 @@ export default function Home() {
                   style={{ backgroundColor: "color-mix(in srgb, var(--color-stone) 30%, transparent)" }}
                 />
               </div>
-              <div
+              <article
                 className="rounded-xl p-8 md:p-10 border"
                 style={{
                   borderColor: "color-mix(in srgb, #5B8DEF 40%, transparent)",
@@ -172,14 +169,15 @@ export default function Home() {
                     View Details →
                   </Link>
                 </div>
-              </div>
-            </div>
+              </article>
+            </section>
           </AnimateIn>
         )}
 
         {/* Demos section */}
-        <div className="mb-16">
+        <section aria-labelledby="demos-heading" className="mb-16">
           <h2
+            id="demos-heading"
             className="text-2xl mb-8"
             style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
           >
@@ -197,11 +195,12 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Backend Tools section */}
-        <div className="mb-16">
+        <section aria-labelledby="backend-heading" className="mb-16">
           <h2
+            id="backend-heading"
             className="text-2xl mb-2"
             style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
           >
@@ -228,12 +227,13 @@ export default function Home() {
               />
             ))}
           </div>
-        </div>
+        </section>
 
         {/* Experiments section */}
         {experimentProjects.length > 0 && (
-          <div>
+          <section aria-labelledby="experiments-heading">
             <h2
+              id="experiments-heading"
               className="text-2xl mb-2"
               style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
             >
@@ -260,7 +260,7 @@ export default function Home() {
                 />
               ))}
             </div>
-          </div>
+          </section>
         )}
       </main>
 
