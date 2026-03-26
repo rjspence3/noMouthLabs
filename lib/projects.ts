@@ -109,7 +109,14 @@ export const projects: Project[] = [
       { label: "Infrastructure", items: ["Railway"] },
     ],
     techTagsPreview: ["DSPy", "Streamlit", "PostgreSQL"],
-    actions: [],
+    actions: [
+      {
+        label: "View on GitHub",
+        href: "https://github.com/rjspence3/agenticInterview",
+        variant: "secondary",
+        external: true,
+      },
+    ],
     flavor: {
       accent: "#5B6EF5",
       heroMotif: "bubbles",
@@ -600,7 +607,14 @@ export const projects: Project[] = [
       { label: "Analysis", items: ["175 experiments", "Held-out evaluation set"] },
     ],
     techTagsPreview: ["DSPy", "GPT-4o", "175 experiments"],
-    actions: [],
+    actions: [
+      {
+        label: "View Report",
+        href: "https://intelligence-arbitrage.vercel.app/",
+        variant: "primary",
+        external: true,
+      },
+    ],
     flavor: {
       accent: "#6B8FAD",
       heroMotif: "grid",
