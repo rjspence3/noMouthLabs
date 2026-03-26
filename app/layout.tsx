@@ -55,6 +55,54 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://nomouthlabs.com/#rob-spence",
+      name: "Rob Spence",
+      alternateName: "Robert Spence",
+      url: "https://nomouthlabs.com",
+      email: "rjspence3@gmail.com",
+      jobTitle: "Senior Solution Architect",
+      worksFor: {
+        "@type": "Organization",
+        name: "OutSystems",
+      },
+      sameAs: [
+        "https://github.com/rjspence3",
+        "https://linkedin.com/in/robertspenceiii",
+        "https://rjspence3.substack.com",
+      ],
+      description:
+        "AI tool builder and Solutions Architect. Builds autonomous agents and LLM-powered products using Claude and the Anthropic SDK. Creator of Kernel — a personal AI OS running 24/7 in production.",
+      knowsAbout: [
+        "Multi-agent AI systems",
+        "Claude API",
+        "Anthropic SDK",
+        "Python",
+        "TypeScript",
+        "FastAPI",
+        "Next.js",
+        "DSPy",
+        "Playwright",
+        "Enterprise software architecture",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://nomouthlabs.com/#website",
+      url: "https://nomouthlabs.com",
+      name: "No Mouth Labs",
+      description:
+        "AI tools I actually ship. Portfolio of production-grade AI experiments, autonomous agents, and LLM-powered tools by Rob Spence.",
+      author: { "@id": "https://nomouthlabs.com/#rob-spence" },
+      inLanguage: "en-US",
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -65,6 +113,12 @@ export default function RootLayout({
       lang="en"
       className={`${familjenGrotesk.variable} ${instrumentSerif.variable} ${dmMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className="antialiased"
         style={{
