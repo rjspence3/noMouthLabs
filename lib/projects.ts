@@ -36,7 +36,7 @@ export interface Project {
   techTagsPreview: string[];
   actions: ProjectAction[];
   flavor: ProjectFlavor;
-  section: "demo" | "backend" | "experiment";
+  section: "demo" | "backend" | "experiment" | "tool";
   hero?: boolean;
   metrics?: ProjectMetric[];
 }
@@ -549,8 +549,8 @@ export const projects: Project[] = [
   },
   {
     slug: "claude-code-toolkit",
-    section: "backend",
-    name: "claude-code-toolkit",
+    section: "tool",
+    name: "Claude Code Kit",
     tagline:
       "A collection of utilities and patterns for building reliable Claude Code worker systems — from spawn scripts to lifecycle management.",
     status: "Open source",

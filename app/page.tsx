@@ -10,6 +10,7 @@ const featuredProject = projects.find((p) => p.hero);
 
 const demoProjects = projects.filter((p) => p.section === "demo" && !p.hero);
 const backendProjects = projects.filter((p) => p.section === "backend");
+const toolProjects = projects.filter((p) => p.section === "tool");
 const experimentProjects = projects.filter((p) => p.section === "experiment");
 
 export const metadata: Metadata = {
@@ -228,6 +229,41 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Tools & Utilities section */}
+        {toolProjects.length > 0 && (
+          <section aria-labelledby="tools-heading" className="mb-16">
+            <h2
+              id="tools-heading"
+              className="text-2xl mb-2"
+              style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
+            >
+              Tools &amp; Utilities
+            </h2>
+            <p
+              className="mb-8 text-sm"
+              style={{
+                fontFamily: "var(--font-sans)",
+                color: "color-mix(in srgb, var(--color-negative-text) 60%, transparent)",
+              }}
+            >
+              Open-source tools built for real workflows — not demos, not prototypes.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {toolProjects.map((project) => (
+                <ProjectCard
+                  key={project.slug}
+                  slug={project.slug}
+                  name={project.name}
+                  tagline={project.tagline}
+                  techTags={project.techTagsPreview}
+                  status={project.status}
+                  href={project.actions[0]?.href}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Experiments section */}
         {experimentProjects.length > 0 && (
