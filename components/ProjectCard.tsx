@@ -19,14 +19,14 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Link className={`block ${className ?? ""}`} href={`/${slug}`}>
-      <div className="rounded-lg p-6 border border-stone/30 transition-all duration-200 cursor-pointer hover:border-ember/60 hover:shadow-[0_0_20px_rgba(232,67,42,0.1)]">
+      <article className="rounded-lg p-6 border border-stone/30 transition-all duration-200 cursor-pointer hover:border-ember/60 hover:shadow-[0_0_20px_rgba(232,67,42,0.1)]">
         <div className="flex flex-col gap-3">
-          <h2
+          <h3
             className="text-xl"
             style={{ fontFamily: "var(--font-sans)", fontWeight: 600 }}
           >
             {name}
-          </h2>
+          </h3>
           <p
             className="text-sm"
             style={{ fontFamily: "var(--font-serif)", fontStyle: "italic" }}
@@ -59,7 +59,7 @@ export default function ProjectCard({
             {status}
           </span>
         </div>
-      </div>
+      </article>
     </Link>
   );
 }

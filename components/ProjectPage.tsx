@@ -139,12 +139,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           <div className="space-y-10">
             <AnimateIn delay={100}>
               <div className="flex flex-col gap-4">
-                <span
+                <h2
                   className="font-mono text-xs uppercase tracking-widest"
                   style={{ color: "var(--color-stone)", fontWeight: 500 }}
                 >
-                  THE PROBLEM
-                </span>
+                  The Problem
+                </h2>
                 <p
                   className="text-base leading-relaxed"
                   style={{
@@ -159,12 +159,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
             </AnimateIn>
             <AnimateIn delay={200}>
               <div className="flex flex-col gap-4">
-                <span
+                <h2
                   className="font-mono text-xs uppercase tracking-widest"
                   style={{ color: "var(--color-stone)", fontWeight: 500 }}
                 >
-                  THE BUILD
-                </span>
+                  The Build
+                </h2>
                 <p
                   className="text-base leading-relaxed"
                   style={{
@@ -183,21 +183,21 @@ export default function ProjectPage({ project }: ProjectPageProps) {
           <aside className="md:sticky md:top-8 md:self-start">
             <AnimateIn delay={150}>
               <div className="flex flex-col gap-4">
-                <span
+                <h2
                   className="font-mono text-xs uppercase tracking-widest"
                   style={{ color: "var(--color-stone)", fontWeight: 500 }}
                 >
-                  TECH STACK
-                </span>
+                  Tech Stack
+                </h2>
                 <div className="flex flex-col gap-4">
                   {project.techStack.map((group) => (
                     <div key={group.label}>
-                      <p
+                      <h3
                         className="font-mono text-xs uppercase tracking-widest mb-2"
                         style={{ color: "var(--color-stone)" }}
                       >
                         {group.label}
-                      </p>
+                      </h3>
                       <div className="flex flex-wrap gap-2">
                         {group.items.map((item) => (
                           <span
@@ -231,12 +231,12 @@ export default function ProjectPage({ project }: ProjectPageProps) {
             }}
           >
             <div className="flex flex-col gap-4">
-              <span
+              <h2
                 className="font-mono text-xs uppercase tracking-widest"
                 style={{ color: "var(--color-stone)", fontWeight: 500 }}
               >
-                WHAT MAKES IT DIFFERENT
-              </span>
+                What Makes It Different
+              </h2>
               <p
                 className="text-lg md:text-xl leading-relaxed max-w-3xl"
                 style={{
