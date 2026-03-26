@@ -205,7 +205,7 @@ export default function Home() {
             className="text-2xl mb-2"
             style={{ fontFamily: "var(--font-sans)", fontWeight: 700 }}
           >
-            Backend Tools
+            Backends / API
           </h2>
           <p
             className="mb-8 text-sm"
@@ -214,7 +214,7 @@ export default function Home() {
               color: "color-mix(in srgb, var(--color-negative-text) 60%, transparent)",
             }}
           >
-            APIs and infrastructure — not demos, but real deployed services.
+            APIs and infrastructure — deployed services, not demos.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {backendProjects.map((project) => (
