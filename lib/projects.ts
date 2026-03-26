@@ -36,7 +36,7 @@ export interface Project {
   techTagsPreview: string[];
   actions: ProjectAction[];
   flavor: ProjectFlavor;
-  category?: "demo" | "backend-tool";
+  category?: "demo" | "backend-tool" | "experiment";
   metrics?: ProjectMetric[];
 }
 
@@ -108,6 +108,7 @@ export const projects: Project[] = [
       },
       { label: "GitHub", href: "https://github.com/rjspence3/demo-gauntlet", variant: "secondary" },
     ],
+    category: "demo",
     flavor: {
       accent: "#D97B2B",
       heroMotif: "spotlight",
@@ -316,7 +317,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dspy-api",
-    category: "backend-tool",
+    category: "demo",
     name: "The Arbitrage Factory",
     tagline:
       "Upload a schema, optimize it with DSPy/MIPROv2, deploy as a REST API — 10–30x cheaper than raw GPT-4o.",
@@ -522,6 +523,76 @@ export const projects: Project[] = [
     ],
     flavor: {
       accent: "#C47D2E",
+      heroMotif: "terminal",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "intelligence-arbitrage",
+    category: "experiment",
+    name: "Intelligence Arbitrage",
+    tagline:
+      "Can optimized local models match frontier APIs? 175 evaluation runs across 9 cognitive task domains say: yes, on the right tasks.",
+    status: "Experiment — results published",
+    statusColor: "stone",
+    metaDescription:
+      "Intelligence Arbitrage tests whether DSPy's MIPROv2 optimization pipeline can close the performance gap between local open-weight models and frontier API models across 9 cognitive task domains.",
+    problem:
+      "Running AI in production at frontier API prices (GPT-4o, Claude) is expensive at scale. The question worth testing: can smaller, locally-running models match frontier quality when their prompts are systematically optimized? DSPy's MIPROv2 is designed to do exactly that — but does it actually work across diverse task types, or only in controlled demos?",
+    build:
+      "175 evaluation runs across 5 experiment phases, testing 6 models (qwen2.5:7b, mistral, llama3.2, phi4, gpt-5.2, gpt-4o) on 9 cognitive task domains. Each model was evaluated baseline and post-MIPROv2 optimization. Key finding: optimized qwen2.5:7b gained +14.2pp average, matching or exceeding frontier baselines on 5 of 9 tasks. Tasks determine whether optimization helps — 2x more variance than the choice of model.",
+    differentiator:
+      "The finding that tasks matter more than models is the surprising result. MIPROv2 actually hurt performance in 12 of 54 model-task pairs. This isn't a product — it's a rigorous answer to a production question: which cognitive task categories are viable targets for model arbitrage, and which aren't.",
+    techStack: [
+      { label: "Languages", items: ["Python"] },
+      { label: "Optimization", items: ["DSPy (MIPROv2)"] },
+      { label: "Models", items: ["Ollama (local)", "OpenAI API"] },
+      { label: "Evaluation", items: ["Custom rubric, 175 runs"] },
+    ],
+    techTagsPreview: ["DSPy", "MIPROv2", "Ollama"],
+    actions: [
+      {
+        label: "Read the Results",
+        href: "https://github.com/imaglide/intelligence-arbitrage",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#6B7EBF",
+      heroMotif: "grid",
+      animationSpeed: 1,
+    },
+  },
+  {
+    slug: "claude-code-toolkit",
+    name: "Claude Code Toolkit",
+    tagline:
+      "12 slash commands and 3 agent definitions after 6 months of daily use. Not a framework — just the stuff that survived.",
+    status: "Open source — actively used",
+    statusColor: "ember",
+    metaDescription:
+      "A battle-tested set of Claude Code slash commands and agent definitions: multi-agent build pipelines, parallel task dispatch, security audits, personality-driven QA, and more.",
+    problem:
+      "Claude Code ships with powerful capabilities but no opinionated workflow layer. After six months of daily use — shipping 12 projects, running 1,000+ workers — patterns emerged: which command structures work, which agent roles are worth splitting out, and where the footguns are. None of that is in the docs.",
+    build:
+      "12 slash commands covering the full build cycle: /build for planner→coder→reviewer pipeline, /dispatch for parallel task execution, /security-audit for vulnerability scanning, /beta-test for personality-driven QA via Claude agents, /site-audit for SEO and accessibility, and more. 3 agent definitions (planner, coder, reviewer) that work together in the /build pipeline. Everything tested on real projects — not toy examples.",
+    differentiator:
+      "These survived 6 months of daily use on production code. /build coordinates 3 model calls in sequence with automatic iteration. /dispatch parallelizes independent work across agent processes. The difference from most AI workflow tools: these are just text files — no framework, no runtime, no lock-in. Add them to any project, use what fits, ignore what doesn't.",
+    techStack: [
+      { label: "Runtime", items: ["Claude Code"] },
+      { label: "Format", items: ["Markdown slash commands"] },
+      { label: "Agents", items: ["Planner", "Coder", "Reviewer"] },
+    ],
+    techTagsPreview: ["Claude Code", "Slash Commands", "Agents"],
+    actions: [
+      {
+        label: "GitHub",
+        href: "https://github.com/rjspence3/claude-code-toolkit",
+        variant: "primary",
+      },
+    ],
+    flavor: {
+      accent: "#E8553A",
       heroMotif: "terminal",
       animationSpeed: 1,
     },
