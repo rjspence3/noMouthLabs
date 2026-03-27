@@ -191,44 +191,6 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "demo-gauntlet",
-    section: "demo",
-    name: "Demo Gauntlet",
-    tagline:
-      "I built this to stress-test my own AI tools before demos. It runs a structured evaluation suite against any AI app — response quality, edge case handling, hallucination signals. I use it before every OutSystems SA engagement where I'm showing AI tooling.",
-    status: "Prototype",
-    statusColor: "stone",
-    metaDescription:
-      "Demo Gauntlet is an AI-powered demo practice simulator where challenger personas fire realistic objections, technical deep-dives, and budget challenges at solution consultants.",
-    problem:
-      "Every solution consultant practices demos in their head or with colleagues who go easy on them. The real test is the CFO who interrupts with 'what's the ROI?' or the Security Lead who asks about SOC 2 compliance mid-flow. You can't prepare for curveball questions by rehearsing alone. But you also can't assemble a panel of tough stakeholders every time you need to practice.",
-    build:
-      "Load your product context, pick a challenger persona (CTO, CFO, CMO, Security Lead, Skeptical End User), and run through your demo while the AI fires realistic objections, technical deep-dives, and budget challenges. Each persona has a distinct personality and concern profile. The CTO pushes on architecture and scalability. The CFO wants ROI math. The Security Lead asks about compliance and data handling. After the session, you get a scorecard covering objection handling, technical depth, clarity, and time management.",
-    differentiator:
-      "Built by someone who's been a solution consultant for 8+ years. The personas aren't generic — they're modeled on the actual stakeholders who show up in enterprise sales cycles. The hardest part of the job isn't knowing your product. It's handling the curveball questions in real-time. Demo Gauntlet doesn't go easy on you.",
-    techStack: [
-      { label: "Languages", items: ["Python", "JavaScript"] },
-      { label: "Frontend", items: ["React"] },
-      { label: "Backend", items: ["FastAPI"] },
-      { label: "AI", items: ["Claude", "Anthropic API"] },
-      { label: "Infrastructure", items: ["Cloud Run", "Vercel"] },
-    ],
-    techTagsPreview: ["Claude", "FastAPI", "Cloud Run"],
-    actions: [
-      {
-        label: "Try it →",
-        href: "https://demo-gauntlet-ui.vercel.app",
-        variant: "primary",
-      },
-      { label: "GitHub", href: "https://github.com/rjspence3/demo-gauntlet", variant: "secondary" },
-    ],
-    flavor: {
-      accent: "#D97B2B",
-      heroMotif: "spotlight",
-      animationSpeed: 1,
-    },
-  },
-  {
     slug: "aequity",
     section: "demo",
     name: "aEquity",
