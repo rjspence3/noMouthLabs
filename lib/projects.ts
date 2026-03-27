@@ -195,7 +195,7 @@ export const projects: Project[] = [
     section: "demo",
     name: "aEquity",
     tagline:
-      "Autonomous equity analyst. S&P 500 stocks scored across four guru-driven lenses — business quality, competitive moat, financial health, and governance — using SEC 10-K filings, yfinance metrics, and Claude.",
+      "Autonomous equity analyst. S&P 500 stocks scored through 8 investing experts (Buffett, Lynch, Graham, Damodaran, Munger, Greenblatt, Marks, Smith) across four pillars — business quality, competitive moat, financial health, and governance — using SEC 10-K filings, yfinance metrics, and Claude.",
     status: "Live",
     statusColor: "ember",
     metaDescription:
