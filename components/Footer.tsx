@@ -1,3 +1,4 @@
+import Link from "next/link";
 import NMLMark from "./NMLMark";
 
 export default function Footer() {
@@ -22,6 +23,16 @@ export default function Footer() {
         >
           The work speaks now.
         </p>
+        <Link
+          href="/privacy"
+          className="text-xs"
+          style={{
+            fontFamily: "var(--font-mono)",
+            color: "var(--color-stone)",
+          }}
+        >
+          Privacy Policy
+        </Link>
       </div>
     </footer>
   );
