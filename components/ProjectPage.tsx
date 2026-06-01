@@ -8,7 +8,16 @@ interface ProjectPageProps {
   project: Project;
 }
 
+// Action labels that link to a live, runnable app (vs. GitHub, API docs, reports).
+// A new demo with a different button label won't trigger the disclaimer below
+// unless its label is added here.
+const LIVE_DEMO_LABELS = new Set(["Try It", "Try Demo", "View Demo"]);
+
 export default function ProjectPage({ project }: ProjectPageProps) {
+  const hasLiveDemo = project.actions.some((action) =>
+    LIVE_DEMO_LABELS.has(action.label)
+  );
+
   const statusColor =
     project.statusColor === "ember"
       ? { borderColor: "var(--color-ember)", color: "var(--color-ember)" }
@@ -129,6 +138,22 @@ export default function ProjectPage({ project }: ProjectPageProps) {
                     )
                   )}
                 </div>
+              </AnimateIn>
+            )}
+            {hasLiveDemo && (
+              <AnimateIn delay={360}>
+                <p
+                  className="mt-6 max-w-xl font-mono text-xs leading-relaxed"
+                  style={{
+                    color: "var(--color-stone)",
+                    borderLeft: "2px solid var(--accent)",
+                    paddingLeft: "0.75rem",
+                  }}
+                >
+                  Heads up — this is a live demo, not a finished product. Things
+                  may break, and it can take a moment to wake up on first load.
+                  If something stalls, give it a beat or refresh.
+                </p>
               </AnimateIn>
             )}
           </div>
