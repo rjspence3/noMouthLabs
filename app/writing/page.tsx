@@ -26,6 +26,7 @@ export default function WritingIndex() {
             <li key={post.slug} className="py-5" style={{ borderTop: "1px solid color-mix(in srgb, var(--color-stone) 25%, transparent)" }}>
               <Link href={`/writing/${post.slug}`} className="group block">
                 <time dateTime={post.date} className="font-mono text-xs" style={{ color: "var(--color-stone)" }}>{formatDate(post.date)}</time>
+                {post.draft && <span className="ml-3 font-mono text-xs" style={{ color: "var(--color-ember)" }}>Draft</span>}
                 <h2 className="text-xl mt-1 group-hover:text-[var(--color-ember)] transition-colors" style={{ fontWeight: 700 }}>{post.title}</h2>
                 <p className="mt-1" style={{ color: "var(--color-bone)" }}>{post.summary}</p>
               </Link>

@@ -61,8 +61,13 @@ export interface Post {
   date: string;
   summary: string;
   projects: string[];
+  draft: boolean;
   bodyHtml: string;
 }
+
+// Drafts show in `next dev` and on Vercel preview deployments, so they can be read
+// before publishing, and never in a production build.
+const SHOW_DRAFTS = process.env.NODE_ENV === "development" || process.env.VERCEL_ENV === "preview";
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SHIP_LOG_HEADING = /^##\s+Ship log\s*$/im;
@@ -188,7 +193,7 @@ function parseProject(fileName: string): Project {
     status,
     shipped,
     // Derived, not written: "last updated" is the newest ship log entry, so it cannot drift
-    // from the log it summarises.
+    // from the log it summarizes.
     updated: shipLog[0]?.date ?? shipped,
     liveUrl,
     codeUrl: optionalString(data, "code_url", file),
@@ -204,8 +209,8 @@ function parseProject(fileName: string): Project {
 function parsePost(fileName: string): Post | null {
   const file = `writing/${fileName}`;
   const { data, content } = matter(fs.readFileSync(path.join(CONTENT_DIR, file), "utf8"));
-  // Drafts render in `next dev` so they can be read before publishing, and nowhere else.
-  if (data.draft === true && process.env.NODE_ENV === "production") return null;
+  const draft = data.draft === true;
+  if (draft && !SHOW_DRAFTS) return null;
   const projects = data.projects ?? [];
   if (!Array.isArray(projects) || projects.some((slug) => typeof slug !== "string")) {
     throw new ContentError(file, `"projects" must be a list of project slugs`);
@@ -216,6 +221,7 @@ function parsePost(fileName: string): Post | null {
     date: toDate(data.date, file, "date"),
     summary: requireString(data, "summary", file),
     projects,
+    draft,
     bodyHtml: marked.parse(content.trim(), { async: false }),
   };
 }

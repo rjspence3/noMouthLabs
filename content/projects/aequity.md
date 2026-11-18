@@ -9,7 +9,7 @@ stack: Python, Streamlit, Claude Sonnet, SEC EDGAR, yfinance, Railway
 featured: true
 metric:
   value: "454"
-  label: S&P 500 companies analysed in the demo database
+  label: S&P 500 companies analyzed in the demo database
   as_of: 2026-03
 ---
 

@@ -26,6 +26,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <Link href="/writing" className="font-mono text-xs" style={{ color: "var(--color-stone)" }}>← All writing</Link>
       <article className="mt-8">
         <time dateTime={post.date} className="font-mono text-xs" style={{ color: "var(--color-stone)" }}>{formatDate(post.date)}</time>
+        {post.draft && <span className="ml-3 font-mono text-xs" style={{ color: "var(--color-ember)" }}>Draft, not published</span>}
         <h1 className="text-4xl mt-2 mb-8" style={{ fontWeight: 700 }}>{post.title}</h1>
         <div className="prose-nml" dangerouslySetInnerHTML={{ __html: post.bodyHtml }} />
       </article>

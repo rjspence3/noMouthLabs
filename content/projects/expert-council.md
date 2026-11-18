@@ -9,13 +9,13 @@ stack: Python (FastAPI, WebSocket), React, Claude, Tavily search, Cloud Run
 featured: true
 metric:
   value: "36"
-  label: behavioural test cases that keep each persona's advice distinct
+  label: behavioral test cases that keep each persona's advice distinct
   as_of: 2026-03
 ---
 
 A research agent searches the web, then picks two to four experts from a roster
 of nine personas, who discuss the question live in cooperative, debate or
-devil's-advocate mode. A behavioural rubric checks that a Stoic Philosopher and
+devil's-advocate mode. A behavioral rubric checks that a Stoic Philosopher and
 a Decision Helper actually give different advice, not the same answer reworded.
 
 ## Ship log

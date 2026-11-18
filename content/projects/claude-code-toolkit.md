@@ -2,7 +2,7 @@
 title: Claude Code Kit
 page: full
 status: live
-shipped: 2026-03-26
+shipped: 2026-03-25
 summary: "The Claude Code commands, agents and plugins I use every day, published for anyone to copy."
 live_url: https://github.com/rjspence3/claude-code-toolkit
 code_url: https://github.com/rjspence3/claude-code-toolkit
@@ -28,4 +28,5 @@ beta testing and site audits, live in their own plugin repos.
 ## Ship log
 
 - 2026-04-08: /fresh writes a dated handoff instead of overwriting the last one.
-- 2026-03-26: Published with 12 commands, 3 agents and a plugin manifest; site audit and beta testing split into their own repos.
+- 2026-03-26: Site audit and beta testing split into their own plugin repos.
+- 2026-03-25: Published with 12 commands, 3 agents and a plugin manifest.

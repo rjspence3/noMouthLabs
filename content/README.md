@@ -8,6 +8,8 @@ these files. Files starting with `_` are templates and are never published.
   becomes the URL: `/projects/<slug>`.
 - New post: copy `writing/_template.md` to `writing/<slug>.md`. Its `projects`
   list links it from those project pages automatically.
+- Drafts: `draft: true` shows a post in `npm run dev` and on Vercel previews,
+  never in production. Delete the line to publish.
 - Ship something: add one line to the project's `## Ship log`. That line also
   becomes the page's "last updated" date and moves it up the index.
 
