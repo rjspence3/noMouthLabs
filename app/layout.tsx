@@ -22,35 +22,26 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://nomouthlabs.com"),
   title: "No Mouth Labs",
   description:
-    "Rob Spence — Solutions Architect and AI tool builder. Shipped multi-agent infrastructure, autonomous AI systems, and production LLM products. 8+ years enterprise SA, 120+ days running Kernel (personal AI OS).",
+    "Rob Spence builds software and sells it. Every project here has a live link, its ship date and a dated ship log.",
   openGraph: {
     title: "No Mouth Labs — Rob Spence",
-    description:
-      "AI tools I actually ship. Not demos I forget about. Proof of work from an 8-year SA who builds real multi-agent systems with Claude.",
+    description: "Software Rob Spence built and shipped, with ship dates and logs as proof.",
     url: "https://nomouthlabs.com",
     siteName: "No Mouth Labs",
     type: "website",
-    images: [
-      {
-        url: "https://nomouthlabs.com/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "No Mouth Labs — Rob Spence",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "No Mouth Labs — Rob Spence",
-    description:
-      "AI tools I actually ship. Real multi-agent systems, production LLM products, and Kernel — a personal AI OS running 24/7.",
-    images: ["https://nomouthlabs.com/og-image.png"],
+    description: "Software Rob Spence built and shipped, with ship dates and logs as proof.",
   },
   alternates: {
     types: {
       "text/plain": "https://nomouthlabs.com/llms.txt",
+      "application/rss+xml": "https://nomouthlabs.com/writing/rss.xml",
     },
   },
 };
@@ -64,39 +55,19 @@ const jsonLd = {
       name: "Rob Spence",
       alternateName: "Robert Spence",
       url: "https://nomouthlabs.com",
-      email: "rjspence3@gmail.com",
-      jobTitle: "Senior Solution Architect",
-      worksFor: {
-        "@type": "Organization",
-        name: "OutSystems",
-      },
       sameAs: [
         "https://github.com/rjspence3",
         "https://linkedin.com/in/robertspenceiii",
         "https://rjspence3.substack.com",
       ],
-      description:
-        "AI tool builder and Solutions Architect. Builds autonomous agents and LLM-powered products using Claude and the Anthropic SDK. Creator of Kernel — a personal AI OS running 24/7 in production.",
-      knowsAbout: [
-        "Multi-agent AI systems",
-        "Claude API",
-        "Anthropic SDK",
-        "Python",
-        "TypeScript",
-        "FastAPI",
-        "Next.js",
-        "DSPy",
-        "Playwright",
-        "Enterprise software architecture",
-      ],
+      description: "Builds and ships software products, many of them built with Claude.",
     },
     {
       "@type": "WebSite",
       "@id": "https://nomouthlabs.com/#website",
       url: "https://nomouthlabs.com",
       name: "No Mouth Labs",
-      description:
-        "AI tools I actually ship. Portfolio of production-grade AI experiments, autonomous agents, and LLM-powered tools by Rob Spence.",
+      description: "Software Rob Spence built and shipped, with ship dates and logs.",
       author: { "@id": "https://nomouthlabs.com/#rob-spence" },
       inLanguage: "en-US",
     },

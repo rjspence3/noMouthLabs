@@ -1,8 +1,9 @@
 # noMouthLabs
 
-Portfolio and showcase site for NoMouth Labs projects. Next.js 15 static-ish
-site listing tools: Demo Gauntlet, Excel Risk Check, Expert Council, Job Heist,
-NapGPT, Lawn Estimator.
+Rob's front door and projects index. Every page is generated from markdown in
+`content/`: each project page proves shipping (status, ship dates, links, dated
+ship log, one real number); everything without that proof is one line on /lab.
+Writing is published here, not on Substack. Nothing Wisq-related goes on the site.
 
 ## Stack
 
@@ -28,22 +29,32 @@ npm run lint   # ESLint
 ## Architecture
 
 ```
-app/
-  page.tsx                # Homepage — project grid
-  layout.tsx              # Site shell
-  [project]/page.tsx      # Per-project pages (demo-gauntlet, excel-risk-check, etc.)
-components/
-  ProjectCard.tsx         # Project tile component
-  ProjectPage.tsx         # Project detail layout
-  AnimateIn.tsx           # Scroll animation wrapper
-  NMLMark.tsx             # Brand mark
-  Footer.tsx
+content/
+  README.md               # How to publish (read this first)
+  projects/<slug>.md      # One file per project; page: full | lab
+  writing/<slug>.md       # One file per post; projects: [slugs]
+  */_template.md          # Templates; "_" files are never published
 lib/
-  projects.ts             # Project registry — source of truth for all cards
+  content.ts              # Loads and validates content/; build fails on bad files
+  site.ts                 # Site constants: seller (Cyber Shark), contact placeholder
+app/
+  page.tsx                # Two-line intro + three newest ships
+  projects/               # Index + [slug] template
+  lab/page.tsx            # One line per lab project
+  writing/                # Index, [slug], rss.xml
+  sitemap.ts, llms.txt/   # Generated from content/
+next.config.ts            # Redirects from the old root-level project URLs
 ```
 
-## Adding a project
+## Rules the code enforces
 
-1. Add entry to `lib/projects.ts`
-2. Create `app/<slug>/page.tsx`
-3. Drop any static assets in `public/`
+- `page: full` needs `live_url` or at least one `## Ship log` line.
+- "Updated" is the newest ship log date, never a hand-set field.
+- The footer says paid products are sold by Cyber Shark Solutions LLC. Never
+  describe NML as part of the LLC.
+- `site.contact.live` stays false until hello@nomouthlabs.com forwarding is tested.
+
+## Deploying
+
+The Vercel project `imaglides-projects/no-mouth-labs` is not git-linked; production
+was deployed with `vercel --prod`. Previews: `vercel deploy` (no `--prod`).
