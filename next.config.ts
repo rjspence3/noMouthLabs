@@ -2,10 +2,10 @@ import type { NextConfig } from "next";
 
 // Project pages used to live at the site root. Keep those URLs working: full projects
 // moved under /projects, everything else became one line on /lab.
-const movedToProjects = ["excel-risk-check", "expert-council", "aequity", "claude-code-toolkit"];
+const movedToProjects = ["excel-risk-check", "expert-council", "aequity", "claude-code-toolkit", "napgpt"];
 const movedToLab = [
   "agentic-interview", "ai-beta-tester", "context-os", "darch", "demo-gauntlet",
-  "dspy-api", "intelligence-arbitrage", "job-heist", "lawn-estimator", "napgpt",
+  "dspy-api", "intelligence-arbitrage", "job-heist", "lawn-estimator",
 ];
 
 const nextConfig: NextConfig = {

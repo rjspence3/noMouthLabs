@@ -7,6 +7,9 @@ summary: "A panel of distinct AI personas debates your hard question in real tim
 live_url: https://expert-council-1078459944567.us-central1.run.app/app
 stack: Python (FastAPI, WebSocket), React, Claude, Tavily search, Cloud Run
 featured: true
+image:
+  src: /projects/expert-council.jpg
+  alt: Expert Council's start screen with the three thinking modes
 metric:
   value: "36"
   label: behavioral test cases that keep each persona's advice distinct

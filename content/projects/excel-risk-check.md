@@ -7,6 +7,9 @@ summary: "Scores an Excel workbook for formula errors, broken references and hid
 live_url: https://excelriskcheck.com
 stack: Python analysis engine and API (FastAPI), Next.js app, Astro marketing site, Postgres, Stripe, Cloud Run
 featured: true
+image:
+  src: /projects/excel-risk-check.jpg
+  alt: The Excel Risk Check home page with its upload box
 metric:
   value: "58"
   label: clicks from Google search in October 2026

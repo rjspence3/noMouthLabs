@@ -7,6 +7,9 @@ summary: "Crowdsourced plow status for every street in Rhode Island, so neighbor
 live_url: https://snowreport.dev
 stack: HTML and JavaScript, Firebase Hosting, Firestore
 featured: true
+image:
+  src: /projects/snow-report.jpg
+  alt: The Snow Report map of Providence with its road status legend
 metric:
   value: "143"
   label: automated UI tests passing by the end of launch week
